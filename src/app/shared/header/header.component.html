@@ -1,0 +1,12 @@
+<button mat-button [matMenuTriggerFor]="afterMenu">
+  <span class="material-icons">
+    menu
+  </span>
+</button>
+<mat-menu #afterMenu="matMenu" xPosition="after">
+  <button mat-menu-item>
+    <span class="material-icons">
+      exit_to_app
+    </span>
+  </button>
+</mat-menu>

@@ -1,0 +1,13 @@
+<div class='navbar-bottom'>
+  <nav mat-tab-nav-bar headerPosition='below' mat-stretch-tabs class="example-stretched-tabs">
+    <a mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.path"
+    routerLinkActive #rla="routerLinkActive"
+    [routerLinkActiveOptions]= "{exact: true}"
+    [active]="rla.isActive">
+      <span class="material-icons">
+        {{link.icon}}
+      </span></a>
+  </nav>
+</div>
