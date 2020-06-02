@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { MaterialModule } from './shared/material-module.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -5,13 +6,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NavbarBottomComponent } from './shared/navbar-bottom/navbar-bottom.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ShoppingListComponent } from './login-components/shopping-list/shopping-list.component';
+import { RecipeListComponent } from './login-components/recipe-list/recipe-list.component';
+import { LoginComponent } from './login-components/login/login.component';
+import { RegisterComponent } from './login-components/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RecipeListComponent,
     LoginComponent,
     RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +35,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

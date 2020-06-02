@@ -1,12 +1,14 @@
-<button mat-button [matMenuTriggerFor]="afterMenu">
-  <span class="material-icons">
-    menu
-  </span>
-</button>
-<mat-menu #afterMenu="matMenu" xPosition="after">
-  <button mat-menu-item>
+<div *ngIf="loggedIn()">
+  <button mat-button [matMenuTriggerFor]="afterMenu">
     <span class="material-icons">
-      exit_to_app
+      menu
     </span>
   </button>
-</mat-menu>
+  <mat-menu #afterMenu="matMenu" xPosition="after">
+    <button mat-menu-item (click)=logout()>
+      <span class="material-icons">
+        exit_to_app
+      </span> Log Out
+    </button>
+  </mat-menu>
+</div>

@@ -28,4 +28,8 @@ export class NavbarBottomComponent implements OnInit {
       this.navLinks.push(element);
     }
   }
+  loggedIn(){
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
 }
