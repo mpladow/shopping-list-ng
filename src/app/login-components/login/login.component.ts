@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   });
   constructor(
     private authService: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -30,14 +32,14 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.formLogin.value).subscribe(
       (response) => {
-        this.alertify.success('You have logged in successfully');
+        this.router.navigate(['/recipe-list']);
       },
       (error) => {
-        this.alertify.error('error');
+        this.alertify.error('login failed');
       }
     );
   }
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.alertify.message('Logged out');
   }

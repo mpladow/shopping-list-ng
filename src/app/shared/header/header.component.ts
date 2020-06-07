@@ -1,3 +1,5 @@
+import { AuthService } from './../../services/auth.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {}
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    // we need to ensure that this token a correct JWT token
+    return this.authService.isLoggedIn();
   }
   logout() {
     localStorage.removeItem('token');
     console.log('logged out');
+    this.router.navigate(['/login']);
   }
 }
