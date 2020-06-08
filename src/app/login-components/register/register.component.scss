@@ -1,1 +1,9 @@
+@import '../../shared/scss/mixins';
 @import '../../shared/scss/shared';
+
+button {
+    width: 50%;
+    @include screen(small) {
+      width: 100%;
+    }
+}
