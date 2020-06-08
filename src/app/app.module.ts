@@ -15,6 +15,8 @@ import { RecipeListComponent } from './main-components/recipe-list/recipe-list.c
 import { LoginComponent } from './login-components/login/login.component';
 import { RegisterComponent } from './login-components/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

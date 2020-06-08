@@ -4,7 +4,6 @@
 
         <!-- <div mat-card-avatar class="example-header-image"></div> -->
         <mat-card-title>Log In</mat-card-title>
-        <mat-card-subtitle>Or</mat-card-subtitle>
 
       <mat-card-content>
         <div class="example-container">
@@ -19,9 +18,9 @@
             <mat-error *ngIf="formLogin.errors?.password">Password must be included</mat-error>
           </mat-form-field>
         </div>
-        <div class='container-button flex d-vertical'>
+        <div class='container-button' fxLayout='row'  fxLayout.xs='column'>
           <button mat-flat-button color="primary" type="submit">Login</button>
-          <button mat-button [routerLink]="['/register']" type="button" class='width-100'>Register</button>
+          <button mat-button [routerLink]="['/register']" type="button">Register</button>
         </div>
 
       </mat-card-content>
