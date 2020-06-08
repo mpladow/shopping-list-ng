@@ -3,14 +3,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AlertifyService } from './alertify.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   baseUrl = 'https://localhost:44361/api/account/';
-  constructor(private http: HttpClient,
-    private alertify: AlertifyService) {}
+  jwtHelper = new JwtHelperService();
+
+  constructor(private http: HttpClient, private alertify: AlertifyService) {}
 
   register(model: AccountVM) {
     console.log(model);
@@ -33,5 +35,10 @@ export class AuthService {
         }
       })
     );
+  }
+  isLoggedIn() {
+    // get token from local storage
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }

@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from "@angular/core";
 import { formatPercent } from "@angular/common";
 import { NavLink } from "../models/navlink";
@@ -9,7 +10,7 @@ import { NavLink } from "../models/navlink";
 })
 export class NavbarBottomComponent implements OnInit {
   navLinks: NavLink[] = [];
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     for (let index = 0; index < 2; index++) {
@@ -29,7 +30,6 @@ export class NavbarBottomComponent implements OnInit {
     }
   }
   loggedIn(){
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.isLoggedIn();
   }
 }

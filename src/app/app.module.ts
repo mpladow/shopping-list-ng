@@ -10,8 +10,8 @@ import { NavbarBottomComponent } from './shared/navbar-bottom/navbar-bottom.comp
 import { HeaderComponent } from './shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ShoppingListComponent } from './login-components/shopping-list/shopping-list.component';
-import { RecipeListComponent } from './login-components/recipe-list/recipe-list.component';
+import { ShoppingListComponent } from './main-components/shopping-list/shopping-list.component';
+import { RecipeListComponent } from './main-components/recipe-list/recipe-list.component';
 import { LoginComponent } from './login-components/login/login.component';
 import { RegisterComponent } from './login-components/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
