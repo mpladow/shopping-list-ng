@@ -8,7 +8,7 @@ import * as alertify from "alertifyjs";
 export class AlertifyService {
   constructor() {}
   success(message: string) {
-    alertify.confirm();
+    alertify.success(message);
   }
 
   confirm(message: string, okCallback: () => any) {
@@ -26,6 +26,6 @@ export class AlertifyService {
     alertify.error(message);
   }
   message(message: string) {
-    alertify.success(message);
+    alertify.message(message);
   }
 }

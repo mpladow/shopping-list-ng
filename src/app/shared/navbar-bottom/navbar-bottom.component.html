@@ -1,4 +1,4 @@
-<div class='navbar-bottom'>
+<div class='navbar-bottom' *ngIf="loggedIn()">
   <nav mat-tab-nav-bar headerPosition='below' mat-stretch-tabs class="example-stretched-tabs">
     <a mat-tab-link
     *ngFor="let link of navLinks"

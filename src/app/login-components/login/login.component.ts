@@ -35,12 +35,16 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/recipe-list']);
       },
       (error) => {
-        this.alertify.error('login failed');
+        this.alertify.error('Your login details are incorrect.');
       }
     );
   }
   logout() {
     localStorage.removeItem('token');
     this.alertify.message('Logged out');
+  }
+  onTestClick(){
+        this.alertify.message("Logged out");
+
   }
 }
