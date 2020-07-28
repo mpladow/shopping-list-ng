@@ -1,3 +1,5 @@
+import { Recipe, RecipeListVM } from './../../models/recipe';
+import { RecipesService } from './../../services/recipes.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
+  private recipes: RecipeListVM[] = [];
 
-  constructor() { }
+  constructor(private recipeService: RecipesService) { }
 
   ngOnInit() {
+    this.recipeService.getPublishedRecipes().subscribe(data => {
+      console.log(data);
+    });
   }
 
 }

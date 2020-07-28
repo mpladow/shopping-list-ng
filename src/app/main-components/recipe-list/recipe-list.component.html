@@ -1,3 +1,90 @@
-<p>
-  recipe-list works!
-</p>
+<div fxLayout='column' fxLayoutGap="0px">
+  <mat-card class='mat-elevation-z0'>
+    <form class="recipe-search" fxHide fxShow.xs>
+      <mat-form-field class="width-100">
+        <input matInput placeholder="Search all recipes">
+      </mat-form-field>
+    </form>
+  </mat-card>
+  <!--Display random recipe here-->
+  <div fxLayout="row" fxLayout.xs="column">
+    <div fxFlexOrder=1 fxFlex="1 1 100%" fxHide fxShow.xs>
+      <mat-card class='mat-elevation-z0'>
+        <div class=header-image-container>
+          <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          <div class='header-image-text'>
+            <h2>Dinner Ideas</h2>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <!--Display List of recipes that are the most viewed-->
+    <!--Display a random category here-->
+    <div fxFlexOrder=2 fxFlex="1 1 auto">
+      <h5>Favourite Recipes</h5>
+      <div class='scrollable-content favouriterecipes'>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+    <div fxFlexOrder=3 fxFlex="1 1 auto">
+      <h6>All Recipes</h6>
+      <div class='allrecipes'>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+        <mat-card class='mat-elevation-z0'>
+          <mat-card-content>
+            <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+          </mat-card-content>
+          <mat-card-footer>
+            <h5>Recipe One</h5>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
