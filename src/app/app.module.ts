@@ -1,3 +1,5 @@
+import { AdminRecipeEditComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
+import { RecipesService } from './services/recipes.service';
 import { AuthService } from './services/auth.service';
 import { MaterialModule } from './shared/material-module.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +18,8 @@ import { LoginComponent } from './login-components/login/login.component';
 import { RegisterComponent } from './login-components/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
+import { AdminRecipeListComponent } from './main-components/recipe-list/recipe-edit/admin-recipe-list/admin-recipe-list.component';
 
 
 
@@ -28,7 +32,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RecipeListComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterComponent
+    RecipeComponent,
+    AdminRecipeEditComponent,
+    AdminRecipeListComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, RecipesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

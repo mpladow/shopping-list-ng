@@ -64,6 +64,8 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 
 import { NgModule } from "@angular/core";
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   imports: [],
@@ -76,6 +78,7 @@ import { NgModule } from "@angular/core";
 
   exports: [
     BrowserAnimationsModule,
+    DragDropModule,
 
     MatCheckboxModule,
 

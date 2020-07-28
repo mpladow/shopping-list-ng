@@ -1,0 +1,111 @@
+<mat-card class='mat-elevation-z0' style='margin-left: -20px; margin-right: -20px;'>
+  <form [formGroup]='recipeForm'>
+    <mat-card-header>
+
+      <div fxLayout='column'>
+        <mat-card-title>
+          <mat-form-field class="example-form-field">
+            <mat-label>Recipe Title</mat-label>
+            <input matInput type="text" formControlName="name">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryId">
+              <mat-option *ngFor="let category of drpdownCategories" [value]="category.categoryId">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-subtitle>
+        <mat-form-field class="example-form-field" fxFlex='80'>
+          <mat-label>Main Description</mat-label>
+          <textarea formControlName='descriptionPrimary' matInput matInput type="text"></textarea>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="example-form-field" fxFlex='80'>
+          <mat-label>Secondary Description</mat-label>
+          <textarea formControlName='descriptionSecondary' matInput matInput type="text"></textarea>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </mat-card-header>
+    <!--Image uploads-->
+    <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+    <mat-card-content>
+      <h4>Ingredients</h4>
+      <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index'>
+        <div [formGroup]='ingredient' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
+          <mat-form-field class="example-form-field" fxFlex='15'>
+            <mat-label>Qty</mat-label>
+            <input type="hidden" formControlName='ingredientId'>
+            <input type="hidden" formControlName='positionNo'>
+            <input formControlName='quantity' matInput type="number">
+          </mat-form-field>
+          <mat-form-field class="example-form-field" fxFlex='20'>
+            <mat-label>Measurement</mat-label>
+            <input formControlName='measure' matInput type="text">
+          </mat-form-field>
+          <mat-form-field class="example-form-field" fxFlex='60'>
+            <mat-label>Ingredient</mat-label>
+            <input formControlName='name' matInput type="text">
+          </mat-form-field>
+          <div fxFlex='5'>
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)='removeIngredientFromForm(i)'>
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap=3px>
+        <div fxFlexAlign='center' style='text-align: center;'>
+          <button mat-stroked-button color="primary" (click)='addIngredientToForm()'>Add Ingredient</button>
+
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-content>
+      <h4>Method</h4>
+      <div cdkDropList (cdkDropListDropped)="drop($event)">
+        <div  *ngFor='let methodItem of getMethodsForm(recipeForm); let j=index' cdkDrag>
+          <div [formGroup]='methodItem' fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='3px' >
+            <input type="hidden" formControlName='methodItemId'>
+            <div fxFlex='10'>
+              <mat-icon>drag_indicator</mat-icon>
+            </div>
+            <mat-form-field class="example-form-field" fxFlex='85'>
+              <mat-label>Step Details</mat-label>
+              <textarea formControlName='text' matInput type="text"></textarea>
+            </mat-form-field>
+            <div fxFlex='5'>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)='removeMethodItemFromFrom(j)'>
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <button mat-stroked-button color="primary" (click)='addMethodItemToForm()'>Add Step</button>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-card class='mat-elevation-z0'>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button mat-flat-button color="primary" (click)=submit()>Save</button>
+            <button mat-flat-button color="warn">Delete</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+
+  </form>
+</mat-card>

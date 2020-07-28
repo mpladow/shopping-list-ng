@@ -5,6 +5,11 @@
     </span>
   </button>
   <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)=logout()>
+          <span class="material-icons">
+            exit_to_app
+          </span> Edit Recipes
+        </button>
     <button mat-menu-item (click)=logout()>
       <span class="material-icons">
         exit_to_app
