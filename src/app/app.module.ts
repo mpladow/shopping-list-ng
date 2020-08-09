@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
 import { AdminRecipeListComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-list/admin-recipe-list.component';
+import { BackNavigationDirective } from './directives/back-navigation.directive';
 
 
 
@@ -34,7 +35,8 @@ import { AdminRecipeListComponent } from './main-components/recipe-list/admin-re
     RegisterComponent,
     RecipeComponent,
     AdminRecipeEditComponent,
-    AdminRecipeListComponent
+    AdminRecipeListComponent,
+    BackNavigationDirective
   ],
   imports: [
     BrowserModule,

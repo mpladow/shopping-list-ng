@@ -1,6 +1,11 @@
 <ng-container *ngIf="loggedIn()">
-  <div fxLayoutAlign="end start">
-    
+
+  <div fxFlex>
+    <ng-container *ngIf='showBackButton'>
+      <button mat-icon-button appBackNavigation>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </ng-container>
   </div>
   <div fxFlex fxLayoutAlign="end start">
     <button mat-icon-button [matMenuTriggerFor]="afterMenu">
@@ -10,7 +15,7 @@
     </button>
     <mat-menu #afterMenu="matMenu" xPosition="after">
       <button mat-menu-item (click)=logout()>
-      New Recipe
+        New Recipe
       </button>
       <button mat-menu-item (click)=logout()>
         <span class="material-icons">
