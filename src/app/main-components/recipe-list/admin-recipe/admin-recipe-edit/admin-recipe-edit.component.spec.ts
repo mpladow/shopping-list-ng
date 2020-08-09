@@ -1,6 +1,6 @@
+import { AdminRecipeEditComponent } from './admin-recipe-edit.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminRecipeEditComponent } from './admin-recipe-edit.component';
 
 describe('RecipeEditComponent', () => {
   let component: AdminRecipeEditComponent;

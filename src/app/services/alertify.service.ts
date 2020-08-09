@@ -11,13 +11,13 @@ export class AlertifyService {
     alertify.success(message);
   }
 
-  confirm(message: string, okCallback: () => any) {
-    alertify.success(message, (e: any) => {
+  confirm(title: string, message: string, okCallback: () => any) {
+    alertify.confirm(title, message, (e: any) => {
       if (e) {
         okCallback();
       } else {
       }
-    });
+    }, ()=>{});
   }
   warning(message: string) {
     alertify.warning();

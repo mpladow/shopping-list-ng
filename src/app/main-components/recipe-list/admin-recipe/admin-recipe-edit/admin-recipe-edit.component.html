@@ -1,10 +1,10 @@
-<mat-card class='mat-elevation-z0' style='margin-left: -20px; margin-right: -20px;'>
+<mat-card class='mat-elevation-z0' style='margin-left: -8px; margin-right: -8px;'>
   <form [formGroup]='recipeForm'>
-    <mat-card-header>
-
+    <mat-card-content>
       <div fxLayout='column'>
         <mat-card-title>
-          <mat-form-field class="example-form-field">
+          <input type='hidden' formControlName='recipeId'>
+          <mat-form-field class="example-form-field" style='width: 100%'>
             <mat-label>Recipe Title</mat-label>
             <input matInput type="text" formControlName="name">
             <button mat-button matSuffix mat-icon-button aria-label="Clear">
@@ -13,7 +13,7 @@
           </mat-form-field>
         </mat-card-title>
         <mat-card-subtitle>
-          <mat-form-field>
+          <mat-form-field style='width: 100%'>
             <mat-label>Category</mat-label>
             <mat-select formControlName="categoryId">
               <mat-option *ngFor="let category of drpdownCategories" [value]="category.categoryId">
@@ -37,31 +37,51 @@
           </button>
         </mat-form-field>
       </div>
-    </mat-card-header>
-    <!--Image uploads-->
-    <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
-    <mat-card-content>
-      <h4>Ingredients</h4>
-      <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index'>
-        <div [formGroup]='ingredient' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
-          <mat-form-field class="example-form-field" fxFlex='15'>
-            <mat-label>Qty</mat-label>
-            <input type="hidden" formControlName='ingredientId'>
-            <input type="hidden" formControlName='positionNo'>
-            <input formControlName='quantity' matInput type="number">
-          </mat-form-field>
-          <mat-form-field class="example-form-field" fxFlex='20'>
-            <mat-label>Measurement</mat-label>
-            <input formControlName='measure' matInput type="text">
-          </mat-form-field>
-          <mat-form-field class="example-form-field" fxFlex='60'>
-            <mat-label>Ingredient</mat-label>
-            <input formControlName='name' matInput type="text">
-          </mat-form-field>
-          <div fxFlex='5'>
-            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)='removeIngredientFromForm(i)'>
-              <mat-icon>close</mat-icon>
-            </button>
+
+      <!--Image uploads-->
+      <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+
+      <div style='display: flex; flex-direction: row; justify-content: space-between;'>
+        <span style='font-size: 1.0em; padding:6px;'>Ingredients</span>
+        <div *ngIf="!reorderingIngredients; else elseBlock">
+          <button mat-button matSuffix aria-label="Clear" (click)='toggleReorderIngredients()'>
+            <mat-icon>drag_indicator</mat-icon>Change Order
+          </button>
+        </div>
+        <ng-template #elseBlock><button mat-flat-button color="primary" matSuffix aria-label="Done"
+            (click)='toggleReorderIngredients()'>
+            Done
+          </button></ng-template>
+
+      </div>
+      <div cdkDropList (cdkDropListDropped)="dropIngredient($event)">
+
+        <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index' cdkDrag cdkDragLockAxis="y">
+          <div [formGroup]='ingredient' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
+            <div fxFlex='10'>
+              <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear"
+                (click)='removeIngredientFromForm(i)'>
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+
+            <mat-form-field class="example-form-field" fxFlex='10'>
+              <mat-label>Qty.</mat-label>
+              <input type="hidden" formControlName='ingredientId'>
+              <input type="hidden" formControlName='positionNo'>
+              <input formControlName='quantity' matInput type="number">
+            </mat-form-field>
+            <mat-form-field class="example-form-field" fxFlex='20'>
+              <mat-label>Meas.</mat-label>
+              <input formControlName='measure' matInput type="text">
+            </mat-form-field>
+            <mat-form-field class="example-form-field" fxFlex='50'>
+              <mat-label>Ingredient</mat-label>
+              <input formControlName='name' matInput type="text">
+            </mat-form-field>
+              <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingIngredients'>
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
           </div>
         </div>
       </div>
@@ -71,25 +91,38 @@
 
         </div>
       </div>
-    </mat-card-content>
-    <mat-card-content>
-      <h4>Method</h4>
-      <div cdkDropList (cdkDropListDropped)="drop($event)">
-        <div  *ngFor='let methodItem of getMethodsForm(recipeForm); let j=index' cdkDrag>
-          <div [formGroup]='methodItem' fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='3px' >
+
+      <div style='display: flex; flex-direction: row; justify-content: space-between;'>
+        <span style='font-size: 1.0em; padding:6px;'>Method</span>
+        <div *ngIf="!reorderingMethodItems; else elseBlockMethodItems">
+          <button mat-button matSuffix aria-label="Clear" (click)='toggleReorderMethodItems()'>
+            <mat-icon>drag_indicator</mat-icon>Change Order
+          </button>
+        </div>
+        <ng-template #elseBlockMethodItems><button mat-flat-button color="primary" matSuffix aria-label="Done"
+            (click)='toggleReorderMethodItems()'>
+            Done
+          </button></ng-template>
+
+      </div>
+      <div cdkDropList (cdkDropListDropped)="dropMethodItem($event)">
+        <div *ngFor='let methodItem of getMethodsForm(recipeForm); let j=index' cdkDrag cdkDragLockAxis="y">
+          <div [formGroup]='methodItem' fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='3px'>
             <input type="hidden" formControlName='methodItemId'>
             <div fxFlex='10'>
-              <mat-icon>drag_indicator</mat-icon>
-            </div>
-            <mat-form-field class="example-form-field" fxFlex='85'>
-              <mat-label>Step Details</mat-label>
-              <textarea formControlName='text' matInput type="text"></textarea>
-            </mat-form-field>
-            <div fxFlex='5'>
-              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)='removeMethodItemFromFrom(j)'>
+              <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear" (click)='removeMethodItemFromFrom(j)'>
                 <mat-icon>close</mat-icon>
               </button>
             </div>
+            <mat-form-field class="example-form-field" fxFlex='80'>
+              <mat-label>Step Details</mat-label>
+              <textarea formControlName='text' matInput type="text"></textarea>
+            </mat-form-field>
+              <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingMethodItems'>
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+
+
           </div>
         </div>
       </div>

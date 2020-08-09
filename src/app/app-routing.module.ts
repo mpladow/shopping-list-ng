@@ -1,4 +1,4 @@
-import { RecipeEditComponent } from './main-components/recipe-list/recipe-edit/recipe-edit.component';
+import { AdminRecipeEditComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
 import { RegisterComponent } from './login-components/register/register.component';
 
 import { NgModule } from '@angular/core';
@@ -8,6 +8,7 @@ import { RecipeListComponent } from './main-components/recipe-list/recipe-list.c
 import { LoginComponent } from './login-components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
+import { AdminRecipeListComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-list/admin-recipe-list.component';
 
 const routes: Routes = [
     { path: '', component: ShoppingListComponent, canActivate: [AuthGuard] },
@@ -39,8 +40,11 @@ const routes: Routes = [
     },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'recipe', component: RecipeComponent },
-    { path: 'recipe-edit', component: RecipeEditComponent },
+    { path: 'recipe/:id', component: RecipeComponent },
+    { path: 'admin-recipe-edit/:id', component: AdminRecipeEditComponent },
+    { path: 'admin-recipe-edit', component: AdminRecipeEditComponent },
+
+    { path: 'admin-recipe-list', component: AdminRecipeListComponent },
 
     { path: '**', redirectTo: '/shopping-list', pathMatch: 'full' },
 ];

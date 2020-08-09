@@ -1,9 +1,9 @@
 <div class='center-page'>
   <mat-card class="container-login mat-elevation-z0">
-    <form [formGroup]='formLogin' (ngSubmit)="login()">
+    <form [formGroup]='formLogin'>
 
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        <mat-card-title>Log In</mat-card-title>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>Log In</mat-card-title>
 
       <mat-card-content>
         <div class="example-container">
@@ -18,9 +18,13 @@
             <mat-error *ngIf="formLogin.errors?.password">Password must be included</mat-error>
           </mat-form-field>
         </div>
-        <div class='container-button' fxLayout='row'  fxLayout.xs='column'>
-          <button mat-flat-button color="primary" type="submit">Login</button>
-          <button mat-button [routerLink]="['/register']" type="button">Register</button>
+        <div class='container-button' fxLayout='row' fxLayout.xs='column'>
+          <div *ngIf='loggingIn' [class.loader]="loggingIn">Loading...</div>
+          <ng-container *ngIf="!loggingIn">
+            <button mat-flat-button [disabled]="loggingIn" color="primary" type="submit"
+              (click)="login($event)">Login</button>
+            <button mat-button [routerLink]="['/register']" type="button">Register</button>
+          </ng-container>
         </div>
 
       </mat-card-content>

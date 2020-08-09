@@ -6,7 +6,7 @@ export class Ingredient {
     }
     ingredientId: number = 0;
     quantity: number = 0;
-    measurement: string = '';
+    measure: string = '';
     name: string = '';
     positionNo: string = '';
 }

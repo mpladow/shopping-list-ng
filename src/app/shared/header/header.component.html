@@ -1,19 +1,22 @@
-<div *ngIf="loggedIn()">
-  <button mat-button [matMenuTriggerFor]="afterMenu">
-    <span class="material-icons">
-      menu
-    </span>
-  </button>
-  <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item (click)=logout()>
-          <span class="material-icons">
-            exit_to_app
-          </span> Edit Recipes
-        </button>
-    <button mat-menu-item (click)=logout()>
+<ng-container *ngIf="loggedIn()">
+  <div fxLayoutAlign="end start">
+    
+  </div>
+  <div fxFlex fxLayoutAlign="end start">
+    <button mat-icon-button [matMenuTriggerFor]="afterMenu">
       <span class="material-icons">
-        exit_to_app
-      </span> Log Out
+        settings
+      </span>
     </button>
-  </mat-menu>
-</div>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+      <button mat-menu-item (click)=logout()>
+      New Recipe
+      </button>
+      <button mat-menu-item (click)=logout()>
+        <span class="material-icons">
+          exit_to_app
+        </span> Log Out
+      </button>
+    </mat-menu>
+  </div>
+</ng-container>

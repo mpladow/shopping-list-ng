@@ -19,7 +19,7 @@ import { RegisterComponent } from './login-components/register/register.componen
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
-import { AdminRecipeListComponent } from './main-components/recipe-list/recipe-edit/admin-recipe-list/admin-recipe-list.component';
+import { AdminRecipeListComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-list/admin-recipe-list.component';
 
 
 

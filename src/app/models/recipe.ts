@@ -12,11 +12,17 @@ export class Recipe {
     publishedAt: string = '';
     categoryId: number = 0;
     category: Category;
+    categoryName: string = '';
     methodItems: Array<MethodItem> = [];
     ingredients: Array<Ingredient> = [];
 }
 
-
+export class RecipeVM {
+    recipeId: number = 0;
+    name: string = '';
+    categoryName: string = '';
+    publishedAt: string = '';
+}
 
 // Model for the list view of recipes
 export class RecipeListVM {

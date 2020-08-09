@@ -1,4 +1,4 @@
-import { Recipe, RecipeListVM } from './../../models/recipe';
+import { Recipe, RecipeListVM, RecipeVM } from './../../models/recipe';
 import { RecipesService } from './../../services/recipes.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  private recipes: RecipeListVM[] = [];
+  private recipes: RecipeVM[] = [];
 
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit() {
     this.recipeService.getPublishedRecipes().subscribe(data => {
       console.log(data);
+      this.recipes = data;
     });
   }
 
