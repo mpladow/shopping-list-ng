@@ -1,3 +1,4 @@
+import { CategoryVM } from './../models/category';
 import { RecipeVM, Recipe } from './../models/recipe';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -22,7 +23,13 @@ export class RecipesService {
         );
     }
 
-    GetRecipesByCategory(){
-        
+    GetRecipesByCategory(id: number) {
+        return this.http
+            .get<Recipe[]>(this.baseUrl + 'GetRecipesByCategory?id=' + id)
+            .pipe(
+                map((response: any) => {
+                    return response;
+                })
+            );
     }
 }

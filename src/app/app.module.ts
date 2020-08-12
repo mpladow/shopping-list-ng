@@ -1,3 +1,4 @@
+import { RecipesComponent } from './main-components/recipes/recipes.component';
 import { AdminRecipeEditComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
 import { RecipesService } from './services/recipes.service';
 import { AuthService } from './services/auth.service';
@@ -34,6 +35,7 @@ import { BackNavigationDirective } from './directives/back-navigation.directive'
     LoginComponent,
     RegisterComponent,
     RecipeComponent,
+    RecipesComponent,
     AdminRecipeEditComponent,
     AdminRecipeListComponent,
     BackNavigationDirective

@@ -1,3 +1,4 @@
+import { RecipesComponent } from './main-components/recipes/recipes.component';
 import { AdminRecipeEditComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
 import { RegisterComponent } from './login-components/register/register.component';
 
@@ -40,7 +41,11 @@ const routes: Routes = [
     },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'recipe', component: RecipeComponent },
+
     { path: 'recipe/:id', component: RecipeComponent },
+    { path: 'recipes', component: RecipesComponent },
+    { path: 'recipes/:id:category', component: RecipesComponent },
     { path: 'admin-recipe-edit/:id', component: AdminRecipeEditComponent },
     { path: 'admin-recipe-edit', component: AdminRecipeEditComponent },
 
