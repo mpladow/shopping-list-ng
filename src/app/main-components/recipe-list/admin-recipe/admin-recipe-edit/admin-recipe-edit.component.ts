@@ -16,6 +16,8 @@ import { Recipe } from 'src/app/models/recipe';
     styleUrls: ['./admin-recipe-edit.component.scss'],
 })
 export class AdminRecipeEditComponent implements OnInit {
+    selectedFile = null;
+    currentImage: string | ArrayBuffer = null;
     public reorderingIngredients: boolean = false;
     public reorderingMethodItems: boolean = false;
     public drpdownCategories: Category[] = [];
@@ -63,12 +65,14 @@ export class AdminRecipeEditComponent implements OnInit {
                     this.recipeForm.patchValue(recipe);
                 });
         }
+        console.log(this.currentImage);
     }
     createRecipeForm() {
         this.recipeForm = this.fb.group({
             recipeId: 0,
             name: ['', Validators.required],
             categoryId: '',
+            imageFile: '',
             descriptionPrimary: ['', Validators.required],
             descriptionSecondary: '',
             ingredients: new FormArray([this.createIngredientsForm()]),
@@ -116,7 +120,7 @@ export class AdminRecipeEditComponent implements OnInit {
     getMethodsForm(form) {
         return form.controls.methodItems.controls;
     }
-    toggleReorderMethodItems(){
+    toggleReorderMethodItems() {
         this.reorderingMethodItems = !this.reorderingMethodItems;
     }
     submit() {
@@ -157,5 +161,26 @@ export class AdminRecipeEditComponent implements OnInit {
             event.previousIndex,
             event.currentIndex
         );
+    }
+    onFileSelected(event) {
+        this.selectedFile = event.target.files[0];
+        // after uploaded, we want to display this image.
+        let reader = new FileReader();
+
+        reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+        reader.onload = (event) => {
+            // called once readAsDataURL is completed
+            this.currentImage = event.target.result;
+            console.log(event.target.result);
+            this.recipeForm.controls['imageFile'].setValue(event.target.result);
+        };
+    }
+    onImageUploadClick() {}
+    removeImage() {
+        this.recipeForm.controls['imageFile'].setValue('');
+        this.selectedFile = null;
+        this.currentImage = null;
+        console.log(this.selectedFile);
     }
 }

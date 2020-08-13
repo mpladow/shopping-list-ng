@@ -15,6 +15,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class RecipeEditComponent implements OnInit {
     public drpdownCategories: Category[] = [];
     public recipeForm: FormGroup;
+    selectedFile = null;
     constructor(
         private categoryService: CategoryService,
         private adminrecipesService: AdminrecipesService,
@@ -83,10 +84,12 @@ export class RecipeEditComponent implements OnInit {
     submit() {
         console.log(this.recipeForm);
         let recipe: Recipe = this.recipeForm.value;
-        this.adminrecipesService.createNewRecipe(recipe).subscribe((result:any) => {
-            let xx = result;
-            console.log(result);
-        });
+        this.adminrecipesService
+            .createNewRecipe(recipe)
+            .subscribe((result: any) => {
+                let xx = result;
+                console.log(result);
+            });
     }
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(
@@ -95,4 +98,6 @@ export class RecipeEditComponent implements OnInit {
             event.currentIndex
         );
     }
+
+
 }

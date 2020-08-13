@@ -39,7 +39,34 @@
       </div>
 
       <!--Image uploads-->
-      <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+      <!-- <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'> -->
+      <span #imageName></span>
+
+      <div class='custom-fileupload'>
+        <div fxFlex='50' [style.display]="currentImage !== null? 'block': 'none'">
+          <img [src]="currentImage"  />
+        </div>
+        <div [style.display]="currentImage === null? 'block': 'none'">
+          <span>Select a file to upload: </span>
+        </div>
+        <input #inputImageUpload type="file" #fileInput id="imageUpload" name="imageUpload" accept="image/*"
+          style="display:none;" (change)="onFileSelected($event)" />
+
+        <div fxFlex='25'>
+          <button mat-button color="primary" (click)="inputImageUpload.click()" type='button'>
+            <mat-icon>file_upload</mat-icon>
+            Upload
+          </button>
+        </div>
+        <ng-container *ngIf='currentImage !== undefined'>
+          <div fxFlex='25'>
+            <button [style.display]="currentImage !== null? 'block': 'none'" mat-icon-button color="warn"
+              (click)="removeImage()" type='button'>
+              <mat-icon>clear</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </div>
 
       <div style='display: flex; flex-direction: row; justify-content: space-between;'>
         <span style='font-size: 1.0em; padding:6px;'>Ingredients</span>
@@ -79,9 +106,9 @@
               <mat-label>Ingredient</mat-label>
               <input formControlName='name' matInput type="text">
             </mat-form-field>
-              <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingIngredients'>
-                <mat-icon>drag_indicator</mat-icon>
-              </div>
+            <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingIngredients'>
+              <mat-icon>drag_indicator</mat-icon>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +137,8 @@
           <div [formGroup]='methodItem' fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='3px'>
             <input type="hidden" formControlName='methodItemId'>
             <div fxFlex='10'>
-              <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear" (click)='removeMethodItemFromFrom(j)'>
+              <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear"
+                (click)='removeMethodItemFromFrom(j)'>
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -118,9 +146,9 @@
               <mat-label>Step Details</mat-label>
               <textarea formControlName='text' matInput type="text"></textarea>
             </mat-form-field>
-              <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingMethodItems'>
-                <mat-icon>drag_indicator</mat-icon>
-              </div>
+            <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingMethodItems'>
+              <mat-icon>drag_indicator</mat-icon>
+            </div>
 
 
           </div>
@@ -142,3 +170,30 @@
 
   </form>
 </mat-card>
+<!-- 
+
+      <div class='custom-fileupload'>
+        <div fxFlex='50' [style.display]="currentImage !== null? 'block': 'none'">
+          <img [src]="currentImage" />
+        </div>
+        <div [style.display]="currentImage === null? 'block': 'none'">
+          <span>Select a file to upload: </span>
+        </div>
+        <input #inputImageUpload type="file" #fileInput id="imageUpload" name="imageUpload" accept="image/*"
+          style="display:none;" (change)="onFileSelected($event)" />
+      
+        <div fxFlex='25'>
+          <button mat-button color="primary" (click)="inputImageUpload.click()" type='button'>
+            <mat-icon>file_upload</mat-icon>
+            Upload
+          </button>
+        </div>
+        <ng-container *ngIf='currentImage !== undefined'>
+          <div fxFlex='25'>
+            <button [style.display]="currentImage !== null? 'block': 'none'" mat-icon-button color="warn"
+              (click)="removeImage()" type='button'>
+              <mat-icon>clear</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </div> -->
