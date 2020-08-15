@@ -28,6 +28,14 @@ export class RecipesComponent implements OnInit {
             .GetRecipesByCategory(categoryId)
             .subscribe((result) => {
                 this.recipes = result;
+                this.recipes.forEach(r => {
+                   if(r.imageFile != null){
+                        let src = 'data:image/jpeg;base64,';
+                        src += r.imageFile;
+                        r.imageSrc = src;
+                        console.log(r.imageSrc);
+                   }
+                })
             });
     }
     onRecipeClick(recipeId) {

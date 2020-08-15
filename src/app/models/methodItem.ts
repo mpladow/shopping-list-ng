@@ -5,6 +5,6 @@ export class MethodItem {
         Object.assign(this, init);
     }
     methodItemId: number = 0;
-    stepNo: string = '';
+    stepNo: number = 0;
     text: string = '';
 }

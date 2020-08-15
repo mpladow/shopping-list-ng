@@ -9,8 +9,10 @@
 <div class='allrecipes' fxLayout='row' fxLayoutGap="5px">
   <ng-container *ngFor='let recipe of recipes'>
     <div>
-      <mat-card class='mat-elevation-z1' (click)='onRecipeClick(recipe.recipeId)'>
-        <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+      <mat-card fxFlex=50 class='mat-elevation-z1' (click)='onRecipeClick(recipe.recipeId)'>
+        <div mat-card-image class='card-img-container'>
+          <img  src={{recipe.imageSrc}}>
+        </div>
         <mat-card-content>
           <p>{{recipe.name}}</p>
         </mat-card-content>

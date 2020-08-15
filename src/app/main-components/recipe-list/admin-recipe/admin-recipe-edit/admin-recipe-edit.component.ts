@@ -16,7 +16,7 @@ import { Recipe } from 'src/app/models/recipe';
     styleUrls: ['./admin-recipe-edit.component.scss'],
 })
 export class AdminRecipeEditComponent implements OnInit {
-    selectedFile = null;
+
     currentImage: string | ArrayBuffer = null;
     public reorderingIngredients: boolean = false;
     public reorderingMethodItems: boolean = false;
@@ -63,6 +63,14 @@ export class AdminRecipeEditComponent implements OnInit {
                         this.addMethodItemToForm();
                     }
                     this.recipeForm.patchValue(recipe);
+
+                    // add display image by setting this to the currentImage var
+                    if(recipe.imageFile != null){
+                        let src = 'data:image/jpeg;base64,';
+                        src += recipe.imageFile;
+                        this.currentImage = src;
+                    }
+
                 });
         }
         console.log(this.currentImage);
@@ -105,7 +113,7 @@ export class AdminRecipeEditComponent implements OnInit {
     createMethodsForm() {
         return this.fb.group({
             methodItemId: 0,
-            stepNo: '',
+            stepNo: 0,
             text: ['', Validators.required],
         });
     }
@@ -163,24 +171,21 @@ export class AdminRecipeEditComponent implements OnInit {
         );
     }
     onFileSelected(event) {
-        this.selectedFile = event.target.files[0];
-        // after uploaded, we want to display this image.
-        let reader = new FileReader();
-
+        // we want to convert this file to a base64 so we can display this. 
+        const reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-        reader.onload = (event) => {
+        reader.onload = (e) => {
             // called once readAsDataURL is completed
-            this.currentImage = event.target.result;
-            console.log(event.target.result);
-            this.recipeForm.controls['imageFile'].setValue(event.target.result);
+            this.currentImage = e.target.result;
+            console.log(e.target.result);
+            this.recipeForm.controls['imageFile'].setValue(e.target.result);
         };
+
     }
     onImageUploadClick() {}
     removeImage() {
         this.recipeForm.controls['imageFile'].setValue('');
-        this.selectedFile = null;
         this.currentImage = null;
-        console.log(this.selectedFile);
     }
 }
