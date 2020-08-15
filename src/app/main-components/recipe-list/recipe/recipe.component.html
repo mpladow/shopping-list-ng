@@ -4,7 +4,7 @@
   <mat-card-subtitle>{{recipe.category.name}}</mat-card-subtitle>
 
 
-  <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+  <img mat-card-image src='{{recipe.imageSrc}}'>
   <mat-card-content>
     <h4>Ingredients</h4>
     <ng-container *ngFor="let ingredient of recipe.ingredients">

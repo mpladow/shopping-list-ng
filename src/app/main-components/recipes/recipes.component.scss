@@ -4,5 +4,18 @@
 .allrecipes {
     .mat-card {
         cursor: pointer;
+        .card-img-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            max-height: 170px;
+            img {
+                flex-shrink: 0;
+                min-width: 100%;
+                min-height: 100%;
+                width: 100%;
+            }
+        }
     }
 }

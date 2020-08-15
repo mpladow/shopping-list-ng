@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
 import { AdminRecipeListComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-list/admin-recipe-list.component';
 import { BackNavigationDirective } from './directives/back-navigation.directive';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -48,7 +49,8 @@ import { BackNavigationDirective } from './directives/back-navigation.directive'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ImageCropperModule
   ],
   providers: [AuthService, RecipesService],
   bootstrap: [AppComponent],

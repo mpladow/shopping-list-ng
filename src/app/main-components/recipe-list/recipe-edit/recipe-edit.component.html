@@ -38,8 +38,15 @@
         </mat-form-field>
       </div>
     </mat-card-header>
+    
     <!--Image uploads-->
-    <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+    <!-- <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'> -->
+    <button mat-button color="warn" (click)="onImageUploadClick()">
+      <mat-icon>file_upload</mat-icon>
+      Upload
+    </button>
+    <input type="file" #fileInput id="imageUpload" name="imageUpload" accept="image/*" style="display:none;" (change)="onFileSelected($event)"/>
+    
     <mat-card-content>
       <h4>Ingredients</h4>
       <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index'>

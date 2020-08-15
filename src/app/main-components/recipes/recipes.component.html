@@ -7,16 +7,14 @@
 </mat-card>
 <h4>{{categoryName}}</h4>
 <div class='allrecipes' fxLayout='row' fxLayoutGap="5px">
-  <ng-container *ngFor='let recipe of recipes'>
-    <div>
-      <mat-card class='mat-elevation-z1' (click)='onRecipeClick(recipe.recipeId)'>
-        <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+      <mat-card fxFlex.lt-sm='50' fxFlex.gt-sm='25' fxFlex.gt-md='10' *ngFor='let recipe of recipes' class='mat-elevation-z1' (click)='onRecipeClick(recipe.recipeId)'>
+        <div mat-card-image class='card-img-container'>
+          <img  src={{recipe.imageSrc}}>
+        </div>
         <mat-card-content>
           <p>{{recipe.name}}</p>
         </mat-card-content>
         <mat-card-footer>
         </mat-card-footer>
       </mat-card>
-    </div>
-  </ng-container>
 </div>

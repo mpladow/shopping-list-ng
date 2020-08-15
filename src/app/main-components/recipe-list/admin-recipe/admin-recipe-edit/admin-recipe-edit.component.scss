@@ -1,3 +1,13 @@
 .hide{
   display: none;
 }
+.custom-fileupload{
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img{
+    width: 100%;
+  }
+}

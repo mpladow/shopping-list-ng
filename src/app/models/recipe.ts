@@ -8,6 +8,9 @@ export class Recipe {
     descriptionPrimary: string = '';
     descriptionSecondary: string = '';
     imageUrl: string = '';
+    imageFile: string;
+    image: File;
+    imageSrc: string;
     deletedAt: string = '';
     publishedAt: string = '';
     categoryId: number = 0;
