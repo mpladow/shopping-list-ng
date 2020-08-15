@@ -33,7 +33,6 @@ export class RecipesComponent implements OnInit {
                         let src = 'data:image/jpeg;base64,';
                         src += r.imageFile;
                         r.imageSrc = src;
-                        console.log(r.imageSrc);
                    }
                 })
             });

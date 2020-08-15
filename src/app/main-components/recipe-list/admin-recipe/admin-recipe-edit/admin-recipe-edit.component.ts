@@ -10,18 +10,24 @@ import { CategoryService } from 'src/app/services/category.service';
 import { AdminrecipesService } from 'src/app/services/adminrecipes.service';
 import { Recipe } from 'src/app/models/recipe';
 
+import { ImageCropperModule, ImageCroppedEvent } from 'ngx-image-cropper';
+
 @Component({
     selector: 'app-admin-recipe-edit',
     templateUrl: './admin-recipe-edit.component.html',
     styleUrls: ['./admin-recipe-edit.component.scss'],
 })
 export class AdminRecipeEditComponent implements OnInit {
-
     currentImage: string | ArrayBuffer = null;
     public reorderingIngredients: boolean = false;
     public reorderingMethodItems: boolean = false;
     public drpdownCategories: Category[] = [];
     public recipeForm: FormGroup;
+
+    // Image cropper
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+
     constructor(
         private categoryService: CategoryService,
         private adminrecipesService: AdminrecipesService,
@@ -65,12 +71,18 @@ export class AdminRecipeEditComponent implements OnInit {
                     this.recipeForm.patchValue(recipe);
 
                     // add display image by setting this to the currentImage var
-                    if(recipe.imageFile != null){
+                    if (recipe.imageFile != null) {
                         let src = 'data:image/jpeg;base64,';
                         src += recipe.imageFile;
                         this.currentImage = src;
                     }
-
+                    // sort ingredients and methoditems
+                    recipe.methodItems.sort((a, b) => {
+                        return a.stepNo - b.stepNo;
+                    });
+                    recipe.ingredients.sort((a, b) => {
+                        return a.positionNo - b.positionNo;
+                    });
                 });
         }
         console.log(this.currentImage);
@@ -170,19 +182,29 @@ export class AdminRecipeEditComponent implements OnInit {
             event.currentIndex
         );
     }
-    onFileSelected(event) {
-        // we want to convert this file to a base64 so we can display this. 
-        const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
+    // onFileSelected(event) {
+    //     // we want to convert this file to a base64 so we can display this.
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-        reader.onload = (e) => {
-            // called once readAsDataURL is completed
-            this.currentImage = e.target.result;
-            console.log(e.target.result);
-            this.recipeForm.controls['imageFile'].setValue(e.target.result);
-        };
+    //     reader.onload = (e) => {
+    //         // called once readAsDataURL is completed
+    //         this.currentImage = e.target.result;
+    //         console.log(e.target.result);
+    //         this.recipeForm.controls['imageFile'].setValue(e.target.result);
+    //     };
+    // }
 
+    onFileSelected(event: ImageCroppedEvent) {
+        this.imageChangedEvent = event;
     }
+
+    imageCropped(event: any): void {
+        const base64 = event.base64;
+        this.currentImage = base64;
+        this.recipeForm.controls['imageFile'].setValue(base64);
+    }
+
     onImageUploadClick() {}
     removeImage() {
         this.recipeForm.controls['imageFile'].setValue('');

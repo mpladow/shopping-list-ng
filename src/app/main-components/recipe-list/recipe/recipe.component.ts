@@ -22,6 +22,16 @@ export class RecipeComponent implements OnInit {
         this.recipeService.getRecipeById(recipeId).subscribe((result) => {
             console.log(result);
             this.recipe = result;
+            console.log(result);
+            if (this.recipe.imageFile != null) {
+                let src = 'data:image/png;base64,';
+                src += this.recipe.imageFile;
+                this.recipe.imageSrc = src;
+                // reorder list
+            }
+            this.recipe.methodItems.sort((a, b) => {
+                return a.stepNo - b.stepNo;
+            })
         });
     }
     onEditClick(e) {

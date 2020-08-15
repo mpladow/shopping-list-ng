@@ -41,11 +41,18 @@
       <!--Image uploads-->
       <!-- <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'> -->
       <span #imageName></span>
-
-      <div class='custom-fileupload'>
-        <div fxFlex='50' [style.display]="currentImage !== null? 'block': 'none'">
-          <img [src]="currentImage"  />
+        <div >
+          <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" [maintainAspectRatio]="true"
+            containWithinAspectRatio="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
+            [cropperMinWidth]="150" resizeToWidth='600' alignImage='center'>
+        
+          </image-cropper>
         </div>
+      <div class='custom-fileupload'>
+
+        <!-- <div fxFlex='50' [style.display]="currentImage !== null? 'block': 'none'">
+          <img [src]="currentImage"  />
+        </div> -->
         <div [style.display]="currentImage === null? 'block': 'none'">
           <span>Select a file to upload: </span>
         </div>

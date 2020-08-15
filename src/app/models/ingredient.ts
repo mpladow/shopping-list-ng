@@ -8,5 +8,5 @@ export class Ingredient {
     quantity: number = 0;
     measure: string = '';
     name: string = '';
-    positionNo: string = '';
+    positionNo: number = 0;
 }
