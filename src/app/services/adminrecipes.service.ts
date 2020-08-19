@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { Recipe, RecipeListVM, RecipeVM } from './../models/recipe';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class AdminrecipesService {
-    private url = 'https://localhost:44361/api/AdminRecipes/';
+    private url = environment.apiUrl + 'AdminRecipes';
 
     constructor(private http: HttpClient) {}
 
@@ -45,5 +46,8 @@ export class AdminrecipesService {
                 return response;
             })
         );
+    }
+    deleteRecipeById(id: number) {
+        return this.http.delete(this.url + id);
     }
 }

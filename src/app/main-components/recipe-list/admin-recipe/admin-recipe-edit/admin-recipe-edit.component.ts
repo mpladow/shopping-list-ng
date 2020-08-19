@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { AdminrecipesService } from 'src/app/services/adminrecipes.service';
 import { Recipe } from 'src/app/models/recipe';
 
 import { ImageCropperModule, ImageCroppedEvent } from 'ngx-image-cropper';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
     selector: 'app-admin-recipe-edit',
@@ -33,7 +34,8 @@ export class AdminRecipeEditComponent implements OnInit {
         private adminrecipesService: AdminrecipesService,
         private fb: FormBuilder,
         private alertify: AlertifyService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
     public id: number = 0;
 
@@ -57,7 +59,6 @@ export class AdminRecipeEditComponent implements OnInit {
                         index < recipe.ingredients.length - 1;
                         index++
                     ) {
-                        const element = recipe.ingredients[index];
                         this.addIngredientToForm();
                     }
                     for (
@@ -99,21 +100,32 @@ export class AdminRecipeEditComponent implements OnInit {
             methodItems: new FormArray([this.createMethodsForm()]),
         });
     }
-    createIngredientsForm() {
+    createIngredientsForm(isSeperator: boolean = false) {
+        console.log(
+            this.fb.group({
+                ingredientId: 0,
+                name: ['', Validators.required],
+                measure: '',
+                quantity: '',
+                positionNo: '',
+                seperator: isSeperator,
+            })
+        );
         return this.fb.group({
             ingredientId: 0,
             name: ['', Validators.required],
             measure: '',
             quantity: '',
             positionNo: '',
+            seperator: isSeperator,
         });
     }
     getIngredientsForm(form) {
         return form.controls.ingredients.controls;
     }
-    addIngredientToForm() {
+    addIngredientToForm(isSeperator: boolean = false) {
         const control = <FormArray>this.recipeForm.get('ingredients');
-        control.push(this.createIngredientsForm());
+        control.push(this.createIngredientsForm(isSeperator));
     }
     removeIngredientFromForm(i) {
         const control = <FormArray>this.recipeForm.get('ingredients');
@@ -122,17 +134,20 @@ export class AdminRecipeEditComponent implements OnInit {
     toggleReorderIngredients() {
         this.reorderingIngredients = !this.reorderingIngredients;
     }
-    createMethodsForm() {
+    createMethodsForm(isSeperator: boolean = false) {
         return this.fb.group({
             methodItemId: 0,
             stepNo: 0,
             text: ['', Validators.required],
+            seperator: isSeperator,
         });
     }
-    addMethodItemToForm() {
+
+    addMethodItemToForm(seperator: boolean = false) {
         const control = <FormArray>this.recipeForm.get('methodItems');
-        control.push(this.createMethodsForm());
+        control.push(this.createMethodsForm(seperator));
     }
+
     removeMethodItemFromFrom(i) {
         const control = <FormArray>this.recipeForm.get('methodItems');
         control.removeAt(i);
@@ -152,19 +167,92 @@ export class AdminRecipeEditComponent implements OnInit {
             () => {
                 this.adminrecipesService
                     .createNewRecipe(recipe)
-                    .subscribe((result: boolean) => {
-                        if (result === true) {
+                    .subscribe((newRecipeId: number) => {
+                        if (newRecipeId > 0) {
                             this.alertify.success(
                                 `Your recipe (${recipe.name}) has been saved.`
                             );
+                            this.recipeForm
+                                .get('recipeId')
+                                .setValue(newRecipeId);
                         } else {
                             this.alertify.warning(
                                 'Your recipe could not be saved at the current moment. Please try again'
                             );
                         }
-                        let xx = result;
-                        console.log(result);
+                        let xx = newRecipeId;
+                        console.log(newRecipeId);
                     });
+            }
+        );
+    }
+    delete() {
+        const id = this.recipeForm.get('recipeId').value;
+
+        if (id > 0) {
+            this.alertify.confirm(
+                'Delete this recipe',
+                'Are you sure you want to delete this recipe?',
+                () => {
+                    this.adminrecipesService
+                        .deleteRecipeById(id)
+                        .subscribe((result) => {
+                            if (result) {
+                                this.alertify.success(
+                                    `Your recipe has been deleted.`
+                                );
+                                // reset all form data
+                                this.recipeForm.reset();
+                                this.recipeForm.get('recipeId').setValue('0');
+                                const ingredients = <FormArray>(
+                                    this.recipeForm.get('ingredients')
+                                );
+                                for (
+                                    let index = 0;
+                                    index < ingredients.length;
+                                    index++
+                                ) {
+                                    ingredients.removeAt(index);
+                                }
+                                this.addIngredientToForm();
+                                const methodItems = <FormArray>(
+                                    this.recipeForm.get('methodItems')
+                                );
+                                for (
+                                    let index = 0;
+                                    index < methodItems.length;
+                                    index++
+                                ) {
+                                    methodItems.removeAt(index);
+                                }
+                                this.addMethodItemToForm();
+                            }
+                        });
+                }
+            );
+        }
+    }
+    clear() {
+        this.alertify.confirm(
+            'Clear all',
+            'Are you sure you want to clear all data?',
+            () => {
+                this.recipeForm.reset();
+                this.recipeForm.get('recipeId').setValue('0');
+                const ingredients = <FormArray>(
+                    this.recipeForm.get('ingredients')
+                );
+                for (let index = 0; index < ingredients.length; index++) {
+                    ingredients.removeAt(index);
+                }
+                this.addIngredientToForm();
+                const methodItems = <FormArray>(
+                    this.recipeForm.get('methodItems')
+                );
+                for (let index = 0; index < methodItems.length; index++) {
+                    methodItems.removeAt(index);
+                }
+                this.addMethodItemToForm();
             }
         );
     }

@@ -1,7 +1,7 @@
 import { AlertifyService } from './../../services/alertify.service';
 import { AuthService } from './../../services/auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
@@ -11,7 +11,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
     public showBackButton = true;
-
+    public showDevIcon = false;
     constructor(
         private router: Router,
         private authService: AuthService,
@@ -20,6 +20,11 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        if (isDevMode()) {
+            this.showDevIcon = true;
+        } else {
+            this.showDevIcon = false;
+        }
         this.router.events.subscribe((event) => {
             if (event['url']) {
                 if (

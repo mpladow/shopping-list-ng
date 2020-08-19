@@ -261,3 +261,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 //     transform: translateY(-50%);
 //     margin: auto;
 // }
+.padding-tb-2 {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}

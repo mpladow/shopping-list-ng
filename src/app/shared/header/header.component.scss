@@ -1,7 +1,13 @@
-.header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 998;
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+}
+.dev-icon {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -10px;
 }

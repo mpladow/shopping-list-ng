@@ -8,10 +8,16 @@
   <mat-card-content>
     <h4>Ingredients</h4>
     <ng-container *ngFor="let ingredient of recipe.ingredients">
-      <div class='ingredient-item' style='border-bottom: 0.5px solid #eaeaea; padding: .5em'>
+      <div *ngIf="!ingredient.seperator; else seperatorIngredient" class='ingredient-item'
+        style='border-bottom: 0.5px solid #eaeaea; padding: .5em'>
         <div fxFlex='50'>{{ingredient.name}}</div>
         <div fxFlex='50' style='text-align: right'>{{ingredient.quantity}} {{ingredient.measure}}</div>
       </div>
+      <ng-template #seperatorIngredient>
+        <div class='method-item'>
+          <div fxFlex='90' fxFlexOffset='10'>{{ingredient.name}}</div>
+        </div>
+      </ng-template>
     </ng-container>
   </mat-card-content>
 </mat-card>
@@ -19,10 +25,15 @@
   <mat-card-content>
     <h4>Method</h4>
     <ng-container *ngFor="let methodItem of recipe.methodItems">
-      <div class='ingredient-item' style='border-bottom: 0.5px solid #eaeaea; padding: .5em'>
+      <div *ngIf="!methodItem.seperator; else seperatorMethodItem" class='method-item'>
         <div fxFlex='10'>{{methodItem.stepNo}}</div>
         <div fxFlex='90'>{{methodItem.text}}</div>
       </div>
+      <ng-template #seperatorMethodItem>
+        <div class='method-item'>
+          <div fxFlex='90' fxFlexOffset='10'>{{methodItem.text}}</div>
+        </div>
+      </ng-template>
     </ng-container>
   </mat-card-content>
 </mat-card>

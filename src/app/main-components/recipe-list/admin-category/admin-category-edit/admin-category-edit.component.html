@@ -1,0 +1,76 @@
+<mat-card class='mat-elevation-z0' style='margin-left: -8px; margin-right: -8px;'>
+  <form [formGroup]='categoryForm'>
+    <mat-card-content>
+      <div fxLayout='column'>
+        <mat-card-title>
+          <input type='hidden' formControlName='categoryId'>
+          <mat-form-field class="example-form-field" style='width: 100%'>
+            <mat-label>Category</mat-label>
+            <input matInput type="text" formControlName="name">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-card-title>
+        <mat-form-field class="example-form-field" fxFlex='80'>
+          <mat-label>Description</mat-label>
+          <textarea formControlName='description' matInput matInput type="text"></textarea>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!--Image uploads-->
+      <span #imageName></span>
+      <div>
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" [maintainAspectRatio]="true"
+          containWithinAspectRatio="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
+          [cropperMinWidth]="150" resizeToWidth='600' alignImage='center'>
+
+        </image-cropper>
+      </div>
+      <div class='custom-fileupload'>
+
+        <!-- <div fxFlex='50' [style.display]="currentImage !== null? 'block': 'none'">
+          <img [src]="currentImage"  />
+        </div> -->
+        <div [style.display]="currentImage === null? 'block': 'none'">
+          <span>Select a file to upload: </span>
+        </div>
+        <input #inputImageUpload type="file" #fileInput id="imageUpload" name="imageUpload" accept="image/*"
+          style="display:none;" (change)="onFileSelected($event)" />
+
+        <div fxFlex='25'>
+          <button mat-button color="primary" (click)="inputImageUpload.click()" type='button'>
+            <mat-icon>file_upload</mat-icon>
+            Upload
+          </button>
+        </div>
+        <ng-container *ngIf='currentImage !== undefined'>
+          <div fxFlex='25'>
+            <button [style.display]="currentImage !== null? 'block': 'none'" mat-icon-button color="warn"
+              (click)="removeImage()" type='button'>
+              <mat-icon>clear</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-card class='mat-elevation-z0'>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button mat-flat-button color="primary" (click)=submit()>Save</button>
+            <button *ngIf="this.categoryForm.get('categoryId').value > 0; else clearButton" mat-flat-button color="warn"
+              (click)=delete()>Delete</button>
+            <ng-template #clearButton>
+              <button mat-stroked-button color="warn" (click)=clear()>Clear</button>
+
+            </ng-template>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+
+  </form>
+</mat-card>

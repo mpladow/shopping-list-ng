@@ -7,4 +7,5 @@ export class MethodItem {
     methodItemId: number = 0;
     stepNo: number = 0;
     text: string = '';
+    seperator: boolean = false;
 }
