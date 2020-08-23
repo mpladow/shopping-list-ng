@@ -1,3 +1,4 @@
+
 import { RecipesComponent } from './main-components/recipes/recipes.component';
 import { AdminRecipeEditComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
 import { RegisterComponent } from './login-components/register/register.component';
@@ -9,7 +10,8 @@ import { RecipeListComponent } from './main-components/recipe-list/recipe-list.c
 import { LoginComponent } from './login-components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
-import { AdminRecipeListComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-list/admin-recipe-list.component';
+import { AdminCategoryListComponent } from './main-components/recipe-list/admin-category/admin-category-list/admin-category-list.component';
+import { AdminCategoryEditComponent } from './main-components/recipe-list/admin-category/admin-category-edit/admin-category-edit.component';
 
 const routes: Routes = [
     { path: '', component: ShoppingListComponent, canActivate: [AuthGuard] },
@@ -49,7 +51,8 @@ const routes: Routes = [
     { path: 'admin-recipe-edit/:id', component: AdminRecipeEditComponent },
     { path: 'admin-recipe-edit', component: AdminRecipeEditComponent },
 
-    { path: 'admin-recipe-list', component: AdminRecipeListComponent },
+    { path: 'admin-category-list', component: AdminCategoryListComponent },
+    { path: 'admin-category-edit', component: AdminCategoryEditComponent },
 
     { path: '**', redirectTo: '/shopping-list', pathMatch: 'full' },
 ];

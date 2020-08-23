@@ -1,9 +1,9 @@
 <ng-container *ngIf="loggedIn()">
-
+  <mat-icon *ngIf='showDevIcon' class='dev-icon'>bug_report</mat-icon>
   <div fxFlex>
     <ng-container *ngIf='showBackButton'>
       <button mat-icon-button appBackNavigation>
-        <mat-icon>keyboard_arrow_left</mat-icon>
+        <mat-icon >keyboard_arrow_left</mat-icon>
       </button>
     </ng-container>
   </div>

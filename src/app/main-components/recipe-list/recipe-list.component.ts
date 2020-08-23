@@ -27,6 +27,13 @@ export class RecipeListComponent implements OnInit {
         });
         this.categoryService.getCategories().subscribe((data) => {
             this.categories = data;
+            this.categories.forEach((c) => {
+                if (c.imageBase64 != null) {
+                    let src = 'data:image/jpeg;base64,';
+                    src += c.imageBase64;
+                    c.imageSrc = src;
+                }
+            });
         });
     }
     onCategoryClick(categoryId, category) {

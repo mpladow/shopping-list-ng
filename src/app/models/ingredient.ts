@@ -9,4 +9,5 @@ export class Ingredient {
     measure: string = '';
     name: string = '';
     positionNo: number = 0;
+    seperator: boolean = false;
 }

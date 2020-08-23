@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../models/pagination';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AdminrecipesService {
-    private url = 'https://localhost:44361/api/AdminRecipes/';
+    private url = environment.apiUrl + 'AdminRecipes/';
 
     constructor(private http: HttpClient) {}
 
@@ -45,5 +46,8 @@ export class AdminrecipesService {
                 return response;
             })
         );
+    }
+    deleteRecipeById(id: number) {
+        return this.http.delete(this.url + id);
     }
 }

@@ -59,11 +59,11 @@
     </div>
     <div fxFlexOrder=3 fxFlex="1 1 auto">
       <h6>All Categories</h6>
-      <div class='allrecipes'>
+      <div class='allrecipes' fxLayoutAlign='center'>
         <ng-container *ngFor='let category of categories'>
           <mat-card class='mat-elevation-z0' (click)='onCategoryClick(category.categoryId, category.name)'>
             <mat-card-content>
-              <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
+              <img mat-card-image src='{{category.imageSrc}}'>
             </mat-card-content>
             <mat-card-footer>
               <h5>{{category.name}}</h5>

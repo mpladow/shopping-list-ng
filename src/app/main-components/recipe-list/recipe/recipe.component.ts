@@ -31,10 +31,16 @@ export class RecipeComponent implements OnInit {
             }
             this.recipe.methodItems.sort((a, b) => {
                 return a.stepNo - b.stepNo;
-            })
+            });
+            this.recipe.ingredients.sort((a, b) => {
+                return a.positionNo - b.positionNo;
+            });
         });
     }
     onEditClick(e) {
-        this.router.navigate(['/admin-recipe-edit', {id: this.recipe.recipeId}]);
+        this.router.navigate([
+            '/admin-recipe-edit',
+            { id: this.recipe.recipeId },
+        ]);
     }
 }

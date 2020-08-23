@@ -41,13 +41,13 @@
       <!--Image uploads-->
       <!-- <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'> -->
       <span #imageName></span>
-        <div >
-          <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" [maintainAspectRatio]="true"
-            containWithinAspectRatio="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
-            [cropperMinWidth]="150" resizeToWidth='600' alignImage='center'>
-        
-          </image-cropper>
-        </div>
+      <div>
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" [maintainAspectRatio]="true"
+          containWithinAspectRatio="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
+          [cropperMinWidth]="150" resizeToWidth='600' alignImage='center'>
+
+        </image-cropper>
+      </div>
       <div class='custom-fileupload'>
 
         <!-- <div fxFlex='50' [style.display]="currentImage !== null? 'block': 'none'">
@@ -91,7 +91,8 @@
       <div cdkDropList (cdkDropListDropped)="dropIngredient($event)">
 
         <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index' cdkDrag cdkDragLockAxis="y">
-          <div [formGroup]='ingredient' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
+          <div *ngIf="ingredient.get('seperator').value !== true; else seperatorDiv" [formGroup]='ingredient'
+            fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
             <div fxFlex='10'>
               <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear"
                 (click)='removeIngredientFromForm(i)'>
@@ -117,12 +118,37 @@
               <mat-icon>drag_indicator</mat-icon>
             </div>
           </div>
+          <ng-template #seperatorDiv>
+            <div [formGroup]='ingredient' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
+              <input type="hidden" formControlName='ingredientId'>
+              <input type="hidden" formControlName='positionNo'>
+              <input type='hidden' formControlName='quantity'>
+              <input type='hidden' formControlName='measure'>
+              <div fxFlex='10'>
+                <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear"
+                  (click)='removeIngredientFromForm(i)'>
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+
+
+              <mat-form-field class="example-form-field" fxFlex='80'>
+                <mat-label>Seperator Description</mat-label>
+                <input formControlName='name' matInput type="text">
+              </mat-form-field>
+              <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingIngredients'>
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap=3px>
+      <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap=3px class='padding-tb-2'>
         <div fxFlexAlign='center' style='text-align: center;'>
           <button mat-stroked-button color="primary" (click)='addIngredientToForm()'>Add Ingredient</button>
-
+        </div>
+        <div fxFlexAlign='center' style='text-align: center;'>
+          <button mat-stroked-button color="primary" (click)='addIngredientToForm(true)'>Add seperator</button>
         </div>
       </div>
 
@@ -141,7 +167,8 @@
       </div>
       <div cdkDropList (cdkDropListDropped)="dropMethodItem($event)">
         <div *ngFor='let methodItem of getMethodsForm(recipeForm); let j=index' cdkDrag cdkDragLockAxis="y">
-          <div [formGroup]='methodItem' fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='3px'>
+          <div *ngIf="methodItem.get('seperator').value !== true; else seperatorMethodItemDiv" [formGroup]='methodItem'
+            fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='3px'>
             <input type="hidden" formControlName='methodItemId'>
             <div fxFlex='10'>
               <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear"
@@ -156,20 +183,45 @@
             <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingMethodItems'>
               <mat-icon>drag_indicator</mat-icon>
             </div>
-
-
           </div>
+          <ng-template #seperatorMethodItemDiv>
+            <div [formGroup]='methodItem' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
+              <input type="hidden" formControlName='methodItemId'>
+              <div fxFlex='10'>
+                <button style='margin-left: -1em' mat-button matSuffix mat-icon-button aria-label="Clear"
+                  (click)='removeMethodItemFromFrom(j)'>
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+              <mat-form-field class="example-form-field" fxFlex='80'>
+                <mat-label>Seperator Description</mat-label>
+                <textarea formControlName='text' matInput type="text"></textarea>
+              </mat-form-field>
+              <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingMethodItems'>
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxLayout="row" fxLayoutAlign="space-around center" class='padding-tb-2'>
         <button mat-stroked-button color="primary" (click)='addMethodItemToForm()'>Add Step</button>
+        <div fxFlexAlign='center' style='text-align: center;'>
+          <button mat-stroked-button color="primary" (click)='addMethodItemToForm(true)'>Add seperator</button>
+        </div>
       </div>
+
       <mat-divider></mat-divider>
       <mat-card class='mat-elevation-z0'>
         <mat-card-content>
           <div fxLayout="row" fxLayoutAlign="space-around center">
             <button mat-flat-button color="primary" (click)=submit()>Save</button>
-            <button mat-flat-button color="warn">Delete</button>
+            <button *ngIf="this.recipeForm.get('recipeId').value > 0; else clearButton" mat-flat-button color="warn"
+              (click)=delete()>Delete</button>
+            <ng-template #clearButton>
+              <button mat-stroked-button color="warn" (click)=clear()>Clear</button>
+
+            </ng-template>
           </div>
         </mat-card-content>
       </mat-card>
