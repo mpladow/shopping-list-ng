@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class CategoryService {
-    private url =  environment.apiUrl + 'category';
+    private url =  environment.apiUrl + 'category/';
 
     constructor(private http: HttpClient) {}
 

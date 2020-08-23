@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RecipesComponent implements OnInit {
     category: CategoryVM;
-    recipes: Recipe[];
+    recipes: Recipe[] = [];
     categoryName: string;
 
     constructor(

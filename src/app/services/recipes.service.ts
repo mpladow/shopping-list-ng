@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { CategoryVM } from './../models/category';
 import { RecipeVM, Recipe } from './../models/recipe';
 import { Injectable } from '@angular/core';
@@ -8,7 +9,7 @@ import { map } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class RecipesService {
-    baseUrl = 'https://localhost:44361/api/recipes/';
+    baseUrl = environment.apiUrl + 'recipes/';
 
     constructor(private http: HttpClient) {}
 
