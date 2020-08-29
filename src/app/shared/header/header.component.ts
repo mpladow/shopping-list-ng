@@ -40,9 +40,12 @@ export class HeaderComponent implements OnInit {
         // we need to ensure that this token a correct JWT token
         return this.authService.isLoggedIn();
     }
+    // MENU OPTIONS
+    onNewRecipeClick() {
+        this.router.navigate(['/admin-recipe-edit', {id: 0}]);
+    }
     logout() {
         localStorage.removeItem('token');
-        console.log('logged out');
         this.alertify.success('You have been logged out.');
         this.router.navigate(['/login']);
     }

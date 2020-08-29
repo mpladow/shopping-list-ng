@@ -1,11 +1,5 @@
 <div fxLayout='column' fxLayoutGap="0px">
-  <mat-card class='mat-elevation-z0'>
-    <form class="recipe-search" fxHide fxShow.xs>
-      <mat-form-field class="width-100">
-        <input matInput placeholder="Search all recipes">
-      </mat-form-field>
-    </form>
-  </mat-card>
+
   <!--Display random recipe here-->
   <div fxLayout="row" fxLayout.xs="column">
     <div fxFlexOrder=1 fxFlex="1 1 100%" fxHide fxShow.xs>
@@ -59,17 +53,23 @@
     </div>
     <div fxFlexOrder=3 fxFlex="1 1 auto">
       <h6>All Categories</h6>
-      <div class='allrecipes' fxLayoutAlign='center'>
-        <ng-container *ngFor='let category of categories'>
-          <mat-card class='mat-elevation-z0' (click)='onCategoryClick(category.categoryId, category.name)'>
-            <mat-card-content>
-              <img mat-card-image src='{{category.imageSrc}}'>
-            </mat-card-content>
-            <mat-card-footer>
-              <h5>{{category.name}}</h5>
-            </mat-card-footer>
-          </mat-card>
+      <div class='allrecipes' fxLayoutAlign='space-between center' fxFill>
+        <ng-container *ngIf='loaded; else loading'>
+          <ng-container *ngFor='let category of categories'>
+            <mat-card class='mat-elevation-z0' (click)='onCategoryClick(category.categoryId, category.name)'>
+              <mat-card-content>
+                <img mat-card-image src='{{category.imageSrc}}'>
+              </mat-card-content>
+              <mat-card-footer>
+                <h5>{{category.name}}</h5>
+              </mat-card-footer>
+            </mat-card>
+          </ng-container>
         </ng-container>
+        <ng-template #loading>
+            <app-skeleton-loader *ngFor="let item of [].constructor(8); let i = index" Cwidth='150' Cheight='150'>
+            </app-skeleton-loader>
+        </ng-template>
       </div>
     </div>
   </div>

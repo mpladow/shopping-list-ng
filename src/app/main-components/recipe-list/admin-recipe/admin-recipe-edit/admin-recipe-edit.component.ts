@@ -45,7 +45,6 @@ export class AdminRecipeEditComponent implements OnInit {
         this.createRecipeForm();
         this.categoryService
             .getCategories()
-
             .subscribe((categories: Category[]) => {
                 this.drpdownCategories = categories;
                 console.log(categories);
@@ -87,12 +86,23 @@ export class AdminRecipeEditComponent implements OnInit {
                 });
         }
         console.log(this.currentImage);
+    } 
+    // ERROR HANDLING
+    public hasError = (controlName: string, errorName: string) => {
+        const form = this.recipeForm.controls[controlName];
+        return form.hasError(errorName);
     }
+    public hasArrayError = (index: number, controlName: string, fieldName: string,  errorName: string, ) => {
+        const formArray = <FormArray>this.recipeForm.get(fieldName);
+        const control = formArray.controls[index].get(controlName);
+        return control.hasError(errorName);
+    }
+      
     createRecipeForm() {
         this.recipeForm = this.fb.group({
             recipeId: 0,
             name: ['', Validators.required],
-            categoryId: '',
+            categoryId: ['', Validators.required],
             imageFile: '',
             descriptionPrimary: ['', Validators.required],
             descriptionSecondary: '',
@@ -101,16 +111,6 @@ export class AdminRecipeEditComponent implements OnInit {
         });
     }
     createIngredientsForm(isSeperator: boolean = false) {
-        console.log(
-            this.fb.group({
-                ingredientId: 0,
-                name: ['', Validators.required],
-                measure: '',
-                quantity: '',
-                positionNo: '',
-                seperator: isSeperator,
-            })
-        );
         return this.fb.group({
             ingredientId: 0,
             name: ['', Validators.required],
@@ -126,6 +126,7 @@ export class AdminRecipeEditComponent implements OnInit {
     addIngredientToForm(isSeperator: boolean = false) {
         const control = <FormArray>this.recipeForm.get('ingredients');
         control.push(this.createIngredientsForm(isSeperator));
+
     }
     removeIngredientFromForm(i) {
         const control = <FormArray>this.recipeForm.get('ingredients');
@@ -161,30 +162,32 @@ export class AdminRecipeEditComponent implements OnInit {
     submit() {
         console.log(this.recipeForm);
         const recipe: Recipe = this.recipeForm.value;
-        this.alertify.confirm(
-            'Save this recipe',
-            'Do you want to save this recipe?',
-            () => {
-                this.adminrecipesService
-                    .createNewRecipe(recipe)
-                    .subscribe((newRecipeId: number) => {
-                        if (newRecipeId > 0) {
-                            this.alertify.success(
-                                `Your recipe (${recipe.name}) has been saved.`
-                            );
-                            this.recipeForm
-                                .get('recipeId')
-                                .setValue(newRecipeId);
-                        } else {
-                            this.alertify.warning(
-                                'Your recipe could not be saved at the current moment. Please try again'
-                            );
-                        }
-                        let xx = newRecipeId;
-                        console.log(newRecipeId);
-                    });
-            }
-        );
+        // CHECK that this form is valid first
+        if (this.recipeForm.valid) {
+            this.alertify.confirm(
+                'Save this recipe',
+                'Do you want to save this recipe?',
+                () => {
+                    this.adminrecipesService
+                        .createNewRecipe(recipe)
+                        .subscribe((newRecipeId: number) => {
+                            if (newRecipeId > 0) {
+                                this.alertify.success(
+                                    `Your recipe (${recipe.name}) has been saved.`
+                                );
+                                this.recipeForm
+                                    .get('recipeId')
+                                    .setValue(newRecipeId);
+                            } else {
+                                this.alertify.warning(
+                                    'Your recipe could not be saved at the current moment. Please try again'
+                                );
+                            }
+                            console.log(newRecipeId);
+                        });
+                }
+            );
+        }
     }
     delete() {
         const id = this.recipeForm.get('recipeId').value;

@@ -10,6 +10,8 @@
             <button mat-button matSuffix mat-icon-button aria-label="Clear">
               <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf="hasError('name', 'required')">You must enter a recipe name</mat-error>
+
           </mat-form-field>
         </mat-card-title>
         <mat-card-subtitle>
@@ -20,6 +22,7 @@
                 {{category.name}}
               </mat-option>
             </mat-select>
+            <mat-error *ngIf="hasError('categoryId', 'required')">You must select a category</mat-error>
           </mat-form-field>
         </mat-card-subtitle>
         <mat-form-field class="example-form-field" fxFlex='80'>
@@ -117,6 +120,8 @@
             <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingIngredients'>
               <mat-icon>drag_indicator</mat-icon>
             </div>
+
+
           </div>
           <ng-template #seperatorDiv>
             <div [formGroup]='ingredient' fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
@@ -141,6 +146,8 @@
               </div>
             </div>
           </ng-template>
+          <mat-error *ngIf="hasArrayError(i, 'name', 'ingredients', 'required')">Ingredient must not be empty
+          </mat-error>
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap=3px class='padding-tb-2'>
@@ -202,6 +209,9 @@
               </div>
             </div>
           </ng-template>
+          <mat-error *ngIf="hasArrayError(j, 'text', 'methodItems', 'required')">Method item must not be empty
+          </mat-error>
+
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="space-around center" class='padding-tb-2'>

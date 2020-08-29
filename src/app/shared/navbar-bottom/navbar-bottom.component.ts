@@ -23,7 +23,7 @@ export class NavbarBottomComponent implements OnInit {
       } else {
         element.label = "Recipes";
         element.icon = "menu_book";
-        element.path = "/recipe-list";
+        element.path = "/main";
 
       }
       this.navLinks.push(element);

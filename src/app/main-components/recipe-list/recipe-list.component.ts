@@ -13,11 +13,12 @@ import { CategoryVM } from 'src/app/models/category';
 export class RecipeListComponent implements OnInit {
     recipes: RecipeVM[] = [];
     categories: CategoryVM[] = [];
+    loaded = false;
 
     constructor(
         private recipeService: RecipesService,
         private categoryService: CategoryService,
-        private router: Router
+        private router: Router,
     ) {}
 
     ngOnInit() {
@@ -25,6 +26,7 @@ export class RecipeListComponent implements OnInit {
             console.log(data);
             this.recipes = data;
         });
+        
         this.categoryService.getCategories().subscribe((data) => {
             this.categories = data;
             this.categories.forEach((c) => {
@@ -34,6 +36,7 @@ export class RecipeListComponent implements OnInit {
                     c.imageSrc = src;
                 }
             });
+            this.loaded = true;
         });
     }
     onCategoryClick(categoryId, category) {

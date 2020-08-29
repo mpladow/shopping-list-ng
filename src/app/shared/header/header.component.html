@@ -8,19 +8,17 @@
     </ng-container>
   </div>
   <div fxFlex fxLayoutAlign="end start">
-    <button mat-icon-button [matMenuTriggerFor]="afterMenu">
+    <button mat-icon-button [matMenuTriggerFor]="afterMenu" style='display: flex; align-items: center;'>
       <span class="material-icons">
         settings
       </span>
     </button>
     <mat-menu #afterMenu="matMenu" xPosition="after">
-      <button mat-menu-item (click)=logout()>
+      <button mat-menu-item (click)=onNewRecipeClick()>
         New Recipe
       </button>
       <button mat-menu-item (click)=logout()>
-        <span class="material-icons">
-          exit_to_app
-        </span> Log Out
+        Log Out
       </button>
     </mat-menu>
   </div>
