@@ -1,27 +1,36 @@
 <ng-container *ngIf="loggedIn()">
-  <mat-icon *ngIf='showDevIcon' class='dev-icon'>bug_report</mat-icon>
-  <div fxFlex>
-    <ng-container *ngIf='showBackButton'>
-      <button mat-icon-button appBackNavigation>
-        <mat-icon >keyboard_arrow_left</mat-icon>
-      </button>
-    </ng-container>
-  </div>
-  <div fxFlex fxLayoutAlign="end start">
-    <button mat-icon-button [matMenuTriggerFor]="afterMenu">
-      <span class="material-icons">
-        settings
-      </span>
-    </button>
-    <mat-menu #afterMenu="matMenu" xPosition="after">
-      <button mat-menu-item (click)=logout()>
-        New Recipe
-      </button>
-      <button mat-menu-item (click)=logout()>
+  <ng-container *ngIf="!showSearchBar; else searchBar">
+    <mat-icon *ngIf='showDevIcon' class='dev-icon'>bug_report</mat-icon>
+    <div fxFlex>
+      <ng-container *ngIf='showBackButton'>
+        <button mat-icon-button appBackNavigation>
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+      </ng-container>
+    </div>
+    <div fxFlex fxLayoutAlign="end start">
+      <button mat-icon-button [matMenuTriggerFor]="afterMenu">
         <span class="material-icons">
-          exit_to_app
-        </span> Log Out
+          settings
+        </span>
       </button>
-    </mat-menu>
-  </div>
+      <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)=onNewRecipeClick()>
+          New Recipe
+        </button>
+        <button mat-menu-item (click)=logout()>
+          Log Out
+        </button>
+      </mat-menu>
+    </div>
+  </ng-container>
+  <ng-template #searchBar>
+      <mat-card class='mat-elevation-z0 width-100'>
+        <form class="recipe-search" fxHide fxShow.xs>
+          <mat-form-field class="width-100">
+            <input matInput placeholder="Search all recipes">
+          </mat-form-field>
+        </form>
+      </mat-card>
+  </ng-template>
 </ng-container>

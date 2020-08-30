@@ -1,0 +1,9 @@
+.header-image-container {
+    position: relative;
+    .header-image-text {
+        position: absolute;
+        bottom: 1em;
+        left: 0;
+        color: white;
+    }
+}

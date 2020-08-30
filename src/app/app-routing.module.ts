@@ -6,12 +6,12 @@ import { RegisterComponent } from './login-components/register/register.componen
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShoppingListComponent } from './main-components/shopping-list/shopping-list.component';
-import { RecipeListComponent } from './main-components/recipe-list/recipe-list.component';
 import { LoginComponent } from './login-components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
 import { AdminCategoryListComponent } from './main-components/recipe-list/admin-category/admin-category-list/admin-category-list.component';
 import { AdminCategoryEditComponent } from './main-components/recipe-list/admin-category/admin-category-edit/admin-category-edit.component';
+import { MainComponent } from './main-components/main/main.component';
 
 const routes: Routes = [
     { path: '', component: ShoppingListComponent, canActivate: [AuthGuard] },
@@ -27,18 +27,14 @@ const routes: Routes = [
     //     canActivate: [AuthGuard],
     //     children: [
     //         {
-    //             path: 'recipe-list',
-    //             component: RecipeListComponent,
-    //         },
-    //         {
     //             path: 'shopping-list',
     //             component: ShoppingListComponent,
     //         },
     //     ],
     // },
     {
-        path: 'recipe-list',
-        component: RecipeListComponent,
+        path: 'main',
+        component: MainComponent,
         canActivate: [AuthGuard],
     },
     { path: 'login', component: LoginComponent },

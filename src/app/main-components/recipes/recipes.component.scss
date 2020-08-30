@@ -2,8 +2,23 @@
     width: 100%;
 }
 .allrecipes {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+        // allows the last item in a list to not extend over the remaining space - a nice hack
+    &::after {
+        content: '';
+        flex: 1 2 140px;
+    }
     .mat-card {
         cursor: pointer;
+        flex: 1 2 100px;
+        display: inline-block;
+        margin: 5px;
+        margin: 0.25em;
+        max-width: 150px;
+        min-width: 100px;
+        width: 100px;
         .card-img-container {
             display: flex;
             justify-content: center;

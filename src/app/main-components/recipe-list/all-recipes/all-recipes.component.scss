@@ -1,0 +1,20 @@
+// all recipes
+.allrecipes {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // allows the last item in a list to not extend over the remaining space - a nice hack
+    &::after {
+        content: '';
+        flex: 1 2 140px;
+    }
+    .mat-card {
+        flex: 1 2 100px;
+        display: inline-block;
+        margin: 5px;
+        margin: 0.25em;
+        max-width: 200px;
+        min-width: 100px;
+        width: 100px;
+    }
+}

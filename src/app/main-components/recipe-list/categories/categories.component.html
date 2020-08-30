@@ -1,0 +1,32 @@
+<div fxLayout='column' fxLayoutGap="0px">
+
+  <!--Display random recipe here-->
+  <div fxLayout="row" fxLayout.xs="column">
+
+    <!--Display List of recipes that are the most viewed-->
+    <!--Display a random category here-->
+    <div fxFlexOrder=2 fxFlex="1 1 auto">
+      <mat-card class='mat-elevation-z0'>
+        <h1 style='letter-spacing: 1px'>Categories</h1>
+      </mat-card>
+      <div class='scrollable-content favouriterecipes'>
+
+        <ng-container *ngFor='let category of categories'>
+          <mat-card class='mat-elevation-z0' (click)='onCategoryClick(category.categoryId, category.name)'>
+            <mat-card-content>
+              <div>
+                <img mat-card-image src='{{category.imageSrc}}'>
+              </div>
+            </mat-card-content>
+            <mat-card-footer>
+              <h5>{{category.name}}</h5>
+            </mat-card-footer>
+          </mat-card>
+        </ng-container>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
