@@ -47,7 +47,7 @@
         <button mat-icon-button color="secondary" aria-label="Favourite">
           <mat-icon>favorite</mat-icon>
         </button>
-        <button mat-icon-button color="warn">
+        <button mat-icon-button color="warn"(click)="onDeleteClick($event)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

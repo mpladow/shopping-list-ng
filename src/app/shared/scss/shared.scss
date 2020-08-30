@@ -26,21 +26,29 @@
     @include screen(small) {
         overflow-x: scroll;
     }
-}
-.container {
-    max-width: 1600px;
-    width: calc(100% - 164px);
-    border-left-width: 1px;
-    border-right-width: 0;
-    padding: 0 24px;
-    margin: 0 auto;
-    @include screen(small) {
-        padding-left: 0;
-        padding-right: 0;
-        // width: calc(100% - 20px);
-        width: 100%;
+    .mat-card {
+        &:first-child {
+            margin-left: 1em;
+        }
+        &:last-child {
+            padding-right: 3em;
+        }
     }
 }
+// .container {
+//     max-width: 1600px;
+//     width: calc(100% - 164px);
+//     border-left-width: 1px;
+//     border-right-width: 0;
+//     padding: 0 24px;
+//     margin: 0 auto;
+//     @include screen(small) {
+//         padding-left: 0;
+//         padding-right: 0;
+//         // width: calc(100% - 20px);
+//         width: 100%;
+//     }
+// }
 .hide {
     display: none;
 }
@@ -139,4 +147,16 @@
 .padding-tb-2 {
     padding-top: 2em;
     padding-bottom: 2em;
+}
+
+.container {
+    &.p1 {
+        padding: 1em;
+    }
+    &.p2 {
+        padding: 2em;
+    }
+    &.p3 {
+        padding: 3em;
+    }
 }

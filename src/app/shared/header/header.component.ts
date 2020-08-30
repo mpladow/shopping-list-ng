@@ -12,6 +12,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
     public showBackButton = true;
     public showDevIcon = false;
+    public showSearchBar = false;
     constructor(
         private router: Router,
         private authService: AuthService,
@@ -26,13 +27,8 @@ export class HeaderComponent implements OnInit {
             this.showDevIcon = false;
         }
         this.router.events.subscribe((event) => {
-            if (event['url']) {
-                if (
-                    (event['url'] && event['url'] === '/') ||
-                    event['url'] === '/recipe-list'
-                ) {
-                    this.checkIfRootPage(event['url']);
-                }
+            if (event instanceof NavigationEnd) {
+                this.checkIfRootPage(event['url']);
             }
         });
     }
@@ -42,7 +38,7 @@ export class HeaderComponent implements OnInit {
     }
     // MENU OPTIONS
     onNewRecipeClick() {
-        this.router.navigate(['/admin-recipe-edit', {id: 0}]);
+        this.router.navigate(['/admin-recipe-edit', { id: 0 }]);
     }
     logout() {
         localStorage.removeItem('token');
@@ -50,10 +46,12 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/login']);
     }
     checkIfRootPage(url) {
-        if (url == '/recipe-list' || url == '/') {
+        if (url === '/main' || url === '/') {
             this.showBackButton = false;
+            this.showSearchBar = true;
         } else {
             this.showBackButton = true;
+            this.showSearchBar = false;
         }
     }
 }

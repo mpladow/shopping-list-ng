@@ -24,6 +24,7 @@ export class AdminRecipeEditComponent implements OnInit {
     public reorderingMethodItems: boolean = false;
     public drpdownCategories: Category[] = [];
     public recipeForm: FormGroup;
+    public loading = false;
 
     // Image cropper
     imageChangedEvent: any = '';
@@ -41,13 +42,14 @@ export class AdminRecipeEditComponent implements OnInit {
 
     ngOnInit() {
         // get categories
+        this.loading = true;
+        window.scrollTo(0, 0);
         this.id = this.route.snapshot.params['id'];
         this.createRecipeForm();
         this.categoryService
             .getCategories()
             .subscribe((categories: Category[]) => {
                 this.drpdownCategories = categories;
-                console.log(categories);
             });
         if (this.id > 0) {
             this.adminrecipesService
@@ -83,7 +85,10 @@ export class AdminRecipeEditComponent implements OnInit {
                     recipe.ingredients.sort((a, b) => {
                         return a.positionNo - b.positionNo;
                     });
+                    this.loading = false;
                 });
+        } else {
+            this.loading = false;
         }
         console.log(this.currentImage);
     } 
@@ -174,7 +179,9 @@ export class AdminRecipeEditComponent implements OnInit {
                             if (newRecipeId > 0) {
                                 this.alertify.success(
                                     `Your recipe (${recipe.name}) has been saved.`
-                                );
+                                    );
+                                    this.router.navigate(['/admin-recipe-edit', {id: newRecipeId}]);
+                                    window.scrollTo(0, 0);
                                 this.recipeForm
                                     .get('recipeId')
                                     .setValue(newRecipeId);

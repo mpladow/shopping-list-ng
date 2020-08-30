@@ -5,25 +5,26 @@
     </mat-form-field>
   </form>
 </mat-card>
-<h4>{{categoryName}}</h4>
-<div class='allrecipes' fxLayoutAlign='space-between center' fxFill>
-  <div *ngIf="recipes.length > 0; else templateEmpty;">
-    <mat-card #cardRecipe *ngFor='let recipe of recipes' class='mat-elevation-z1'
-      (click)='onRecipeClick(recipe.recipeId)'>
-      <div mat-card-image class='card-img-container'>
-        <img src={{recipe.imageSrc}}>
-      </div>
-      <mat-card-content>
-        <p>{{recipe.name}}</p>
-      </mat-card-content>
-      <mat-card-footer>
-      </mat-card-footer>
-    </mat-card>
-  </div>
+<mat-card class='mat-elevation-z0'>
+  <h4>{{categoryName}}</h4>
+</mat-card>
 
-  <ng-template #templateEmpty>
-    <mat-card fxLayoutAlign='space-around center'>This category is empty. Yeeeet!
-      <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>
-    </mat-card>
-  </ng-template>
+<div *ngIf="recipes.length > 0; else templateEmpty;" class='allrecipes' fxLayoutAlign='space-between center' fxFill>
+  <mat-card #cardRecipe *ngFor='let recipe of recipes' class='mat-elevation-z1'
+    (click)='onRecipeClick(recipe.recipeId)'>
+    <div mat-card-image class='card-img-container'>
+      <img src={{recipe.imageSrc}}>
+    </div>
+    <mat-card-content>
+      <p>{{recipe.name}}</p>
+    </mat-card-content>
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
 </div>
+
+<ng-template #templateEmpty>
+  <mat-card class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'>This category is empty. Yeeeet!
+    <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>
+  </mat-card>
+</ng-template>

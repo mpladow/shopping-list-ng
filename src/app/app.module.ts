@@ -1,3 +1,4 @@
+import { LoadingScreenInterceptor } from './interceptors/loading-screen.interceptor';
 import { CachingInterceptor } from './interceptors/caching/caching.interceptor';
 import { RequestCacheService } from './services/request-cache.service';
 import { RecipesComponent } from './main-components/recipes/recipes.component';
@@ -16,11 +17,10 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ShoppingListComponent } from './main-components/shopping-list/shopping-list.component';
-import { RecipeListComponent } from './main-components/recipe-list/recipe-list.component';
-import { LoginComponent } from './login-components/login/login.component';
 import { RegisterComponent } from './login-components/register/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
 import { BackNavigationDirective } from './directives/back-navigation.directive';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -30,6 +30,11 @@ import { SkeletonLoaderModule } from './shared/skeleton-loader/skeleton-loader.m
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MainComponent } from './main-components/main/main.component';
 import { SearchResultsComponent } from './main-components/search-results/search-results.component';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { CategoriesComponent } from './main-components/recipe-list/categories/categories.component';
+import { LoginComponent } from './login-components/login/login.component';
+import { AllRecipesComponent } from './main-components/recipe-list/all-recipes/all-recipes.component';
+import { MainJumbotronComponent } from './main-components/recipe-list/main-jumbotron/main-jumbotron.component';
 
 
 
@@ -39,7 +44,7 @@ import { SearchResultsComponent } from './main-components/search-results/search-
         ShoppingListComponent,
         NavbarBottomComponent,
         HeaderComponent,
-        RecipeListComponent,
+        CategoriesComponent,
         LoginComponent,
         RegisterComponent,
         RecipeComponent,
@@ -49,7 +54,10 @@ import { SearchResultsComponent } from './main-components/search-results/search-
         AdminCategoryListComponent,
         AdminCategoryEditComponent,
         MainComponent,
-        SearchResultsComponent
+        SearchResultsComponent,
+        LoadingComponent,
+        AllRecipesComponent,
+        MainJumbotronComponent
           ],
     imports: [
         BrowserModule,
@@ -67,7 +75,9 @@ import { SearchResultsComponent } from './main-components/search-results/search-
         AuthService,
         RecipesService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        RequestCacheService, { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true}
+        RequestCacheService, 
+        { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: LoadingScreenInterceptor, multi: true}
     ],
     bootstrap: [AppComponent],
 })

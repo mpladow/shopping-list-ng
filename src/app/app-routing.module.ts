@@ -6,7 +6,6 @@ import { RegisterComponent } from './login-components/register/register.componen
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShoppingListComponent } from './main-components/shopping-list/shopping-list.component';
-import { RecipeListComponent } from './main-components/recipe-list/recipe-list.component';
 import { LoginComponent } from './login-components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
@@ -27,10 +26,6 @@ const routes: Routes = [
     //     runGuardsAndResolvers: 'always',
     //     canActivate: [AuthGuard],
     //     children: [
-    //         {
-    //             path: 'recipe-list',
-    //             component: RecipeListComponent,
-    //         },
     //         {
     //             path: 'shopping-list',
     //             component: ShoppingListComponent,

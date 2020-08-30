@@ -268,3 +268,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .width-100{
     width: 100%;
 }
+body {
+    margin: 0;
+    padding: 0;
+}

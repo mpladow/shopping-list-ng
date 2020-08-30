@@ -1,16 +1,16 @@
-import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
-import { Recipe, RecipeListVM, RecipeVM } from './../../models/recipe';
-import { RecipesService } from './../../services/recipes.service';
 import { Component, OnInit } from '@angular/core';
+import { RecipeVM } from 'src/app/models/recipe';
 import { CategoryVM } from 'src/app/models/category';
+import { RecipesService } from 'src/app/services/recipes.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-recipe-list',
-    templateUrl: './recipe-list.component.html',
-    styleUrls: ['./recipe-list.component.scss'],
+    selector: 'app-categories',
+    templateUrl: './categories.component.html',
+    styleUrls: ['./categories.component.scss'],
 })
-export class RecipeListComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
     recipes: RecipeVM[] = [];
     categories: CategoryVM[] = [];
     loaded = false;
@@ -18,7 +18,7 @@ export class RecipeListComponent implements OnInit {
     constructor(
         private recipeService: RecipesService,
         private categoryService: CategoryService,
-        private router: Router,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -26,7 +26,7 @@ export class RecipeListComponent implements OnInit {
             console.log(data);
             this.recipes = data;
         });
-        
+
         this.categoryService.getCategories().subscribe((data) => {
             this.categories = data;
             this.categories.forEach((c) => {

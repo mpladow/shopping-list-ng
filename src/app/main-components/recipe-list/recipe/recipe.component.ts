@@ -1,3 +1,6 @@
+import { AdminrecipesService } from 'src/app/services/adminrecipes.service';
+import { AdminRecipeEditComponent } from './../admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { RecipeVM } from './../../../models/recipe';
 import { RecipesService } from './../../../services/recipes.service';
 import { Recipe } from 'src/app/models/recipe';
@@ -14,7 +17,9 @@ export class RecipeComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private recipeService: RecipesService
+        private recipeService: RecipesService,
+        private alertifyService: AlertifyService,
+        private adminRecipeService: AdminrecipesService
     ) {}
 
     ngOnInit() {
@@ -42,5 +47,19 @@ export class RecipeComponent implements OnInit {
             '/admin-recipe-edit',
             { id: this.recipe.recipeId },
         ]);
+    }
+    onDeleteClick(e) {
+        this.alertifyService.confirm('Delete recipe', 'Are you sure you want to delete this recipe? This cannot be undone.', () => {
+            this.adminRecipeService.deleteRecipeById(this.recipe.recipeId).subscribe((result: boolean) => {
+                if (result) {
+                    this.alertifyService.success(`This recipe ${this.recipe.name} was deleted successfully`);
+                    this.router.navigate(['/recipe-list']);
+
+                    // return to list.
+                } else {
+// stay on page and give error
+                }
+            });
+        })
     }
 }
