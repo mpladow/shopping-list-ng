@@ -1,3 +1,4 @@
+import { StoragecacheService } from './services/storagecache.service';
 import { LoadingScreenInterceptor } from './interceptors/loading-screen.interceptor';
 import { CachingInterceptor } from './interceptors/caching/caching.interceptor';
 import { RequestCacheService } from './services/request-cache.service';
@@ -74,9 +75,10 @@ import { MainJumbotronComponent } from './main-components/recipe-list/main-jumbo
     providers: [
         AuthService,
         RecipesService,
+        StoragecacheService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        RequestCacheService, 
-        { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true},
+        // RequestCacheService, 
+        // { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: LoadingScreenInterceptor, multi: true}
     ],
     bootstrap: [AppComponent],
