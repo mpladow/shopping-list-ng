@@ -167,6 +167,7 @@ export class AdminRecipeEditComponent implements OnInit {
     submit() {
         console.log(this.recipeForm);
         const recipe: Recipe = this.recipeForm.value;
+        const edit: boolean = recipe.recipeId > 0;
         // CHECK that this form is valid first
         if (this.recipeForm.valid) {
             this.alertify.confirm(
@@ -177,8 +178,12 @@ export class AdminRecipeEditComponent implements OnInit {
                         .createNewRecipe(recipe)
                         .subscribe((newRecipeId: number) => {
                             if (newRecipeId > 0) {
+                                let successMessage = edit
+                                    ? `Your recipe (${recipe.name}) has been updated.`
+                                    : `Your recipe (${recipe.name}) has been saved.`;
+
                                 this.alertify.success(
-                                    `Your recipe (${recipe.name}) has been saved.`
+                                    successMessage
                                     );
                                     this.router.navigate(['/admin-recipe-edit', {id: newRecipeId}]);
                                     window.scrollTo(0, 0);
