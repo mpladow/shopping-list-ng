@@ -1,9 +1,16 @@
 <div class="center-page">
-  <mat-card class='mat-elevation-z0'>
+  <mat-card class='container-register mat-elevation-z0'>
+    <div style='display: flex; justify-content: center; flex-direction: column; text-align: center;'>
+      <h1>Register</h1>
+    </div>
     <form [formGroup]='formRegister' (ngSubmit)="register()">
-        <mat-card-title>Register</mat-card-title>
-        <mat-card-subtitle>Or<button mat-button [routerLink]="['/login']" type="button">Return to Login</button></mat-card-subtitle>
       <mat-card-content>
+        <mat-card class='description mat-elevation-z1'>
+          <p>Create new recipes</p>
+          <p>Access hundreds of recipes </p>
+          <p>Synchronise required ingredients with your shopping list</p>
+          <p>Share recipes and shopping lists with others</p>
+        </mat-card>
         <mat-form-field appearance="fill" class='width-100'>
           <mat-label>Enter your email</mat-label>
           <input matInput placeholder="pat@example.com" formControlName='email' required>
@@ -14,8 +21,10 @@
           <input type='password' matInput placeholder="pat@example.com" formControlName="password" required>
           <mat-error *ngIf="formRegister.errors?.password">Password must be included</mat-error>
         </mat-form-field>
-        <div class='container-button' fxLayout='row' fxLayout.sm='column'>
+        <div class='container-button' fxLayout='row' fxLayout.xs='column'>
           <button mat-flat-button color="primary" type="submit">Register</button>
+          <button mat-button [routerLink]="['/login']" type="button">Return to Login</button>
+
         </div>
       </mat-card-content>
     </form>

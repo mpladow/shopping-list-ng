@@ -4,7 +4,7 @@
 .container-login {
     min-width: 150px;
     max-width: 50%;
-    width: 100%;
+    width: 80%;
     @include screen(small) {
         max-width: 100%;
     }
@@ -12,6 +12,9 @@
 .container-button {
   display: flex;
   justify-content: center;
+  button{
+    margin-top: 1em;
+  }
 }
 button {
     width: 50%;
