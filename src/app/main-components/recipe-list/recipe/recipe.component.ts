@@ -29,9 +29,10 @@ export class RecipeComponent implements OnInit {
             this.recipe = result;
             console.log(result);
             if (this.recipe.imageFile != null) {
-                let src = 'data:image/png;base64,';
-                src += this.recipe.imageFile;
-                this.recipe.imageSrc = src;
+                // let src = 'data:image/png;base64,';
+                // src += this.recipe.imageFile;
+                // this.recipe.imageSrc = src;
+                 this.recipe.imageSrc = this.recipe.imageFile;
                 // reorder list
             }
             this.recipe.methodItems.sort((a, b) => {

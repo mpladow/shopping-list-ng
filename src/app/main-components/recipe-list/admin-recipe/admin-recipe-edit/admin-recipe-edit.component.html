@@ -1,4 +1,4 @@
-<mat-card class='mat-elevation-z0' style='margin-left: -8px; margin-right: -8px;'>
+<mat-card class='mat-elevation-z0'>
   <form [formGroup]='recipeForm'>
     <mat-card-content>
       <div fxLayout='column'>
@@ -44,7 +44,7 @@
       <!--Image uploads-->
       <!-- <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'> -->
       <span #imageName></span>
-      <div>
+      <div style='margin-right:.5em'>
         <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" [maintainAspectRatio]="true"
           containWithinAspectRatio="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
           [cropperMinWidth]="150" resizeToWidth='600' alignImage='center'>
