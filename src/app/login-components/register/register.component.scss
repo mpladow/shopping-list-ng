@@ -1,9 +1,35 @@
 @import '../../shared/scss/mixins';
 @import '../../shared/scss/shared';
 
+.container-button {
+  display: flex;
+  justify-content: center;
+  button{
+    margin-top: 1em;
+  }
+}
+.container-register {
+    min-width: 150px;
+    max-width: 50%;
+    width: 80%;
+    @include screen(small) {
+        max-width: 100%;
+    }
+}
 button {
     width: 50%;
     @include screen(small) {
       width: 100%;
     }
+}
+.description {
+  border: 1px solid #eaeaea;
+    padding: 1em;
+    margin: .5em;
+  p {
+    font-size: .8em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

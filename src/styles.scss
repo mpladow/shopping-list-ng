@@ -234,10 +234,11 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .mat-raised-button,
 .mat-stroked-button,
 .mat-flat-button {
-    padding: 0 1.15em;
+    padding: 1px 1.15em!important;
     margin: 0 0.65em;
     min-width: 3em;
     line-height: 36.4px;
+    border-radius: 18px!important;
 }
 
 .mat-standard-chip {
