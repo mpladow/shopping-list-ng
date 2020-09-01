@@ -31,9 +31,10 @@ export class CategoriesComponent implements OnInit {
             this.categories = data;
             this.categories.forEach((c) => {
                 if (c.imageBase64 != null) {
-                    let src = 'data:image/jpeg;base64,';
-                    src += c.imageBase64;
-                    c.imageSrc = src;
+                    // let src = 'data:image/jpeg;base64,';
+                    // src += c.imageBase64;
+                    // c.imageSrc = src;
+                    c.imageSrc = c.imageBase64; // this is not a base64 file
                 }
             });
             this.loaded = true;
