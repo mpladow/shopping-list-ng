@@ -156,10 +156,10 @@ body {
 }
 
 $mat-primary: (
-    main: #5477e7,
-    lighter: #ccd6f8,
-    darker: #3a5add,
-    200: #5477e7,
+    main: #1B3F48,
+    lighter: #408dac,
+    darker: #0b181d,
+    200: #306a81,
     // For slide toggle,
         contrast:
         (
@@ -195,7 +195,7 @@ $mat-accent: (
 $theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
 body {
-    --warn-color: #ff0000;
+    --warn-color: #BA5250;
     --warn-lighter-color: #ffb3b3;
     --warn-darker-color: #ff0000;
     --text-warn-color: #{$light-primary-text};
@@ -204,10 +204,10 @@ body {
 }
 
 $mat-warn: (
-    main: #ff0000,
-    lighter: #ffb3b3,
-    darker: #ff0000,
-    200: #ff0000,
+    main: #BA5250,
+    lighter: #dca8a7,
+    darker: #251010,
+    200: #944140,
     // For slide toggle,
         contrast:
         (
@@ -234,11 +234,11 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .mat-raised-button,
 .mat-stroked-button,
 .mat-flat-button {
-    padding: 1px 1.15em!important;
+    padding: 3px 1.15em!important;
     margin: 0 0.65em;
     min-width: 3em;
     line-height: 36.4px;
-    border-radius: 18px!important;
+    border-radius: 25px!important;
 }
 
 .mat-standard-chip {

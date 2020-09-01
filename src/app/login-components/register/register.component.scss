@@ -4,8 +4,10 @@
 .container-button {
   display: flex;
   justify-content: center;
+    align-items: center;
   button{
     margin-top: 1em;
+    width: 80%;
   }
 }
 .container-register {
