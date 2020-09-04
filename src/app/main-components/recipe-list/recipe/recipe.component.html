@@ -1,10 +1,31 @@
-<mat-card class='mat-elevation-z0 reduce-border'>
+<mat-card class='recipe-image-container mat-elevation-z0'>
+  <img src='{{recipe.imageSrc}}'>
+</mat-card>
+<!-- <mat-card class='container-frosted'>
   <mat-card-title>{{recipe.name}}</mat-card-title>
   <mat-card-subtitle>{{recipe.descriptionPrimary}}</mat-card-subtitle>
   <mat-card-subtitle>{{recipe.category.name}}</mat-card-subtitle>
+</mat-card> -->
+<mat-card class='container-recipe-title'>
+  <h2>{{recipe.name}}</h2>
+  <p>{{recipe.descriptionPrimary}}</p>
+      <section>
+        <div class="button-row">
+          <button mat-icon-button color="primary" (click)="onEditClick($event)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="secondary" aria-label="Favourite">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDeleteClick($event)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </section>
+</mat-card>
+<mat-card class='mat-elevation-z0 reduce-border'>
 
 
-  <img mat-card-image src='{{recipe.imageSrc}}'>
   <mat-card-content>
     <h4>Ingredients</h4>
     <ng-container *ngFor="let ingredient of recipe.ingredients">
@@ -39,18 +60,6 @@
 </mat-card>
 <mat-card class='mat-elevation-z0 reduce-border' style='margin-bottom: 4em;'>
   <mat-card-content>
-    <section>
-      <div class="button-row">
-        <button mat-icon-button color="primary" (click)="onEditClick($event)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="secondary" aria-label="Favourite">
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button color="warn"(click)="onDeleteClick($event)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </section>
+
   </mat-card-content>
 </mat-card>

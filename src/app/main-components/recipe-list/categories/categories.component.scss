@@ -17,10 +17,19 @@
         margin: 5px;
         margin: 0.25em;
         max-width: 150px;
-        min-width: 55px;
+        min-width: 70px;
         width: 100px;
+        padding: 0;
+        margin: 1em;
         .mat-card-footer{
             text-align: center;
         }
+    }
+}
+.category-image-container {
+    border-radius: 10px;;
+    img{
+        width: 100%;
+        border-radius: 15px;
     }
 }
