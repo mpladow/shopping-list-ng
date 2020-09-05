@@ -9,21 +9,54 @@
 <mat-card class='container-recipe-title'>
   <h2>{{recipe.name}}</h2>
   <p>{{recipe.descriptionPrimary}}</p>
-      <section>
-        <div class="button-row">
-          <button mat-icon-button color="primary" (click)="onEditClick($event)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="secondary" aria-label="Favourite">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="onDeleteClick($event)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </section>
+  <section>
+    <div class="button-row">
+      <button mat-icon-button color="primary" (click)="onEditClick($event)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="secondary" aria-label="Favourite">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onDeleteClick($event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </section>
 </mat-card>
-<mat-card class='mat-elevation-z0 reduce-border'>
+<mat-card>
+  <mat-tab-group>
+    <mat-tab label="Ingredients">
+      <ng-container *ngFor="let ingredient of recipe.ingredients">
+
+        <div *ngIf="!ingredient.seperator; else seperatorIngredient" class='ingredient-item'
+          style='border-bottom: 0.5px solid #eaeaea; padding: .5em'>
+          <div fxFlex='50'>{{ingredient.name}}</div>
+          <div fxFlex='50' style='text-align: right'>{{ingredient.quantity}} {{ingredient.measure}}</div>
+        </div>
+
+        <ng-template #seperatorIngredient>
+          <div class='method-item'>
+            <div fxFlex='90' fxFlexOffset='10'>{{ingredient.name}}</div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </mat-tab>
+    <mat-tab label="Method">
+      <ng-container *ngFor="let methodItem of recipe.methodItems">
+        <div *ngIf="!methodItem.seperator; else seperatorMethodItem" class='method-item'>
+          <div fxFlex='10'>{{methodItem.stepNo}}</div>
+          <div fxFlex='90'>{{methodItem.text}}</div>
+        </div>
+        <ng-template #seperatorMethodItem>
+          <div class='method-item'>
+            <div fxFlex='90' fxFlexOffset='10'>{{methodItem.text}}</div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+<!-- <mat-card class='mat-elevation-z0 reduce-border'>
 
 
   <mat-card-content>
@@ -41,8 +74,8 @@
       </ng-template>
     </ng-container>
   </mat-card-content>
-</mat-card>
-<mat-card class='mat-elevation-z0 reduce-border'>
+</mat-card> -->
+<!-- <mat-card class='mat-elevation-z0 reduce-border'>
   <mat-card-content>
     <h4>Method</h4>
     <ng-container *ngFor="let methodItem of recipe.methodItems">
@@ -62,4 +95,4 @@
   <mat-card-content>
 
   </mat-card-content>
-</mat-card>
+</mat-card> -->
