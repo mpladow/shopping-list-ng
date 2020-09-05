@@ -7,7 +7,7 @@
   <mat-card-subtitle>{{recipe.category.name}}</mat-card-subtitle>
 </mat-card> -->
 <mat-card class='container-recipe-title'>
-  <h2>{{recipe.name}}</h2>
+  <h1>{{recipe.name}}</h1>
   <p>{{recipe.descriptionPrimary}}</p>
   <section>
     <div class="button-row">
@@ -23,32 +23,31 @@
     </div>
   </section>
 </mat-card>
-<mat-card>
-  <mat-tab-group>
+<mat-card class='mat-elevation-z0'>
+  <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Ingredients">
       <ng-container *ngFor="let ingredient of recipe.ingredients">
-
-        <div *ngIf="!ingredient.seperator; else seperatorIngredient" class='ingredient-item'
-          style='border-bottom: 0.5px solid #eaeaea; padding: .5em'>
-          <div fxFlex='50'>{{ingredient.name}}</div>
-          <div fxFlex='50' style='text-align: right'>{{ingredient.quantity}} {{ingredient.measure}}</div>
-        </div>
-
+        <mat-selection-list>
+          <mat-list-option checkboxPosition="before" *ngIf="!ingredient.seperator; else seperatorIngredient" value='ingredient.name'>
+            <div fxFlex='80'>{{ingredient.name}}</div>
+            <div fxFlex='20' style='text-align: right;'>{{ingredient.quantity}} {{ingredient.measure}}</div>
+          </mat-list-option>
+        </mat-selection-list>
         <ng-template #seperatorIngredient>
-          <div class='method-item'>
-            <div fxFlex='90' fxFlexOffset='10'>{{ingredient.name}}</div>
+          <div class='recipe-seperator'>
+            <div fxFlex='100'>{{ingredient.name}}</div>
           </div>
         </ng-template>
       </ng-container>
     </mat-tab>
     <mat-tab label="Method">
       <ng-container *ngFor="let methodItem of recipe.methodItems">
-        <div *ngIf="!methodItem.seperator; else seperatorMethodItem" class='method-item'>
-          <div fxFlex='10'>{{methodItem.stepNo}}</div>
+        <div *ngIf="!methodItem.seperator; else seperatorMethodItem" class='recipe-item'>
+          <div fxFlex='10'>{{methodItem.stepNo}}.</div>
           <div fxFlex='90'>{{methodItem.text}}</div>
         </div>
         <ng-template #seperatorMethodItem>
-          <div class='method-item'>
+          <div class='recipe-seperator'>
             <div fxFlex='90' fxFlexOffset='10'>{{methodItem.text}}</div>
           </div>
         </ng-template>

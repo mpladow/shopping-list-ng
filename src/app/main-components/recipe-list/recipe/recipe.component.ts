@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RecipeComponent implements OnInit {
     recipe: Recipe;
+    selectedIngredients: Array<string> = [];
     constructor(
         private router: Router,
         private route: ActivatedRoute,
