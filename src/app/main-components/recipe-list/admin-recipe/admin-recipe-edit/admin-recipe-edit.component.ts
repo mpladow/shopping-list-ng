@@ -91,18 +91,23 @@ export class AdminRecipeEditComponent implements OnInit {
             this.loading = false;
         }
         console.log(this.currentImage);
-    } 
+    }
     // ERROR HANDLING
     public hasError = (controlName: string, errorName: string) => {
         const form = this.recipeForm.controls[controlName];
         return form.hasError(errorName);
-    }
-    public hasArrayError = (index: number, controlName: string, fieldName: string,  errorName: string, ) => {
+    };
+    public hasArrayError = (
+        index: number,
+        controlName: string,
+        fieldName: string,
+        errorName: string
+    ) => {
         const formArray = <FormArray>this.recipeForm.get(fieldName);
         const control = formArray.controls[index].get(controlName);
         return control.hasError(errorName);
-    }
-      
+    };
+
     createRecipeForm() {
         this.recipeForm = this.fb.group({
             recipeId: 0,
@@ -131,7 +136,6 @@ export class AdminRecipeEditComponent implements OnInit {
     addIngredientToForm(isSeperator: boolean = false) {
         const control = <FormArray>this.recipeForm.get('ingredients');
         control.push(this.createIngredientsForm(isSeperator));
-
     }
     removeIngredientFromForm(i) {
         const control = <FormArray>this.recipeForm.get('ingredients');
@@ -182,11 +186,12 @@ export class AdminRecipeEditComponent implements OnInit {
                                     ? `Your recipe (${recipe.name}) has been updated.`
                                     : `Your recipe (${recipe.name}) has been saved.`;
 
-                                this.alertify.success(
-                                    successMessage
-                                    );
-                                    this.router.navigate(['/admin-recipe-edit', {id: newRecipeId}]);
-                                    window.scrollTo(0, 0);
+                                this.alertify.success(successMessage);
+                                this.router.navigate([
+                                    '/admin-recipe-edit',
+                                    { id: newRecipeId },
+                                ]);
+                                window.scrollTo(0, 0);
                                 this.recipeForm
                                     .get('recipeId')
                                     .setValue(newRecipeId);
@@ -272,18 +277,23 @@ export class AdminRecipeEditComponent implements OnInit {
         );
     }
     dropMethodItem(event: CdkDragDrop<string[]>) {
-        moveItemInArray(
-            this.getMethodsForm(this.recipeForm),
+        const methodForm = this.recipeForm.get('methodItems') as FormArray;
+
+        this.moveItemInFormArray(
+            methodForm,
             event.previousIndex,
             event.currentIndex
         );
+        console.log({ form: this.getMethodsForm(this.recipeForm) });
     }
     dropIngredient(event: CdkDragDrop<string[]>) {
-        moveItemInArray(
-            this.getIngredientsForm(this.recipeForm),
+        const ingredientsForm = this.recipeForm.get('ingredients') as FormArray;
+        this.moveItemInFormArray(
+            ingredientsForm,
             event.previousIndex,
             event.currentIndex
         );
+        console.log({ form: this.getIngredientsForm(this.recipeForm) });
     }
     // onFileSelected(event) {
     //     // we want to convert this file to a base64 so we can display this.
@@ -307,7 +317,27 @@ export class AdminRecipeEditComponent implements OnInit {
         this.currentImage = base64;
         this.recipeForm.controls['imageFile'].setValue(base64);
     }
+    moveItemInFormArray(
+        formArray: FormArray,
+        fromIndex: number,
+        toIndex: number
+    ): void {
+        const dir = toIndex > fromIndex ? 1 : -1;
 
+        const from = fromIndex;
+        const to = toIndex;
+
+        let newIndex: number = from + dir;
+        if (newIndex === -1) {
+            newIndex = formArray.length - 1;
+        } else if (newIndex === formArray.length) {
+            newIndex = 0;
+        }
+
+        const currentGroup = formArray.at(from);
+        formArray.removeAt(from);
+        formArray.insert(to, currentGroup);
+    }
     onImageUploadClick() {}
     removeImage() {
         this.recipeForm.controls['imageFile'].setValue('');

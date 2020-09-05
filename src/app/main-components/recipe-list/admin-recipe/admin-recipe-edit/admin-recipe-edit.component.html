@@ -93,7 +93,7 @@
       </div>
       <div cdkDropList (cdkDropListDropped)="dropIngredient($event)">
 
-        <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index' cdkDrag cdkDragLockAxis="y">
+        <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index' cdkDrag cdkDragStartDelay='250' cdkDragLockAxis="y">
           <div *ngIf="ingredient.get('seperator').value !== true; else seperatorDiv" [formGroup]='ingredient'
             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
             <div fxFlex='10'>
