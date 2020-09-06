@@ -30,9 +30,7 @@ export class RecipesComponent implements OnInit {
                 this.recipes = result;
                 this.recipes.forEach(r => {
                    if(r.imageFile != null){
-                        let src = 'data:image/jpeg;base64,';
-                        src += r.imageFile;
-                        r.imageSrc = src;
+                        r.imageSrc = r.imageFile;
                    }
                 })
             });

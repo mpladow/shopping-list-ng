@@ -1,4 +1,6 @@
-// all recipes
+.width-100 {
+    width: 100%;
+}
 .allrecipes {
     display: inline-flex;
     flex-wrap: wrap;
@@ -8,13 +10,62 @@
         content: '';
         flex: 1 2 140px;
     }
-    .mat-card {
-        flex: 1 2 100px;
-        display: inline-block;
-        margin: 5px;
-        margin: 0.25em;
-        max-width: 200px;
-        min-width: 100px;
-        width: 100px;
+}
+.recipe-card {
+    padding: 0;
+    cursor: pointer;
+    flex: 1 2 100px;
+    display: inline-block;
+    margin: 5px;
+    margin: 0.25em;
+    max-width: 150px;
+    min-width: 100px;
+    width: 100%;
+    max-height: 150px;
+    overflow: hidden;
+    min-height: 150px;
+    min-width: 150px;
+    border-radius: 25px;
+    object-fit: contain;
+    position: relative;
+
+    img {
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: 150%;
+        object-fit: cover;
+    }
+    .mat-card-content {
+        /* margin-top: -6em; */
+        padding: 0.5em;
+        color: antiquewhite;
+        position: absolute;
+        /* display: flex; */
+        bottom: -10px;
+
+        .text-container {
+            // background-color: #1b3f48;
+            background-color: black;
+            padding: 2px;
+            display:inline;
+        }
+    }
+}
+.mat-card {
+    .card-img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        max-height: 170px;
+        width: 100%;
+
+        img {
+            flex-shrink: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+        }
     }
 }

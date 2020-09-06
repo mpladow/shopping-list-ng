@@ -24,6 +24,16 @@ export class RecipesService {
         );
     }
 
+    GetRecipesByQuery(text: string = '') {
+          return this.http
+              .get<Recipe>(this.baseUrl + 'GetPublishedRecipes?text=' + text)
+              .pipe(
+                  map((response: any) => {
+                      return response;
+                  })
+              );
+    }
+
     GetRecipesByCategory(id: number) {
         return this.http
             .get<Recipe[]>(this.baseUrl + 'GetRecipesByCategory?id=' + id)

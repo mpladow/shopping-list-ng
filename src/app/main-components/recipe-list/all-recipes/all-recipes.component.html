@@ -1,8 +1,27 @@
-<div fxFlexOrder=3 fxFlex="1 1 auto" style='margin-bottom: 4em;'>
+<div fxFlex fxLayout='column' style='margin-bottom: 4em;'>
   <mat-card class='mat-elevation-z0'>
     <h3 style='letter-spacing: 1px'>Explore</h3>
   </mat-card>
-  <div class='allrecipes' fxLayoutAlign='space-between center' fxFill>
-    <div></div>
+  <div *ngIf="recipes.length > 0; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign=''>
+    <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutAlign='center start' style='padding: 3px'>
+      <mat-card #cardRecipe class='mat-elevation-z1 recipe-card' (click)='onRecipeClick(recipe.recipeId)'>
+        <img src={{recipe.imageSrc}}>
+        <mat-card-content>
+          <div class='text-container'>
+            <span>{{recipe.name}}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+    </div>
   </div>
+
+  <ng-template #templateEmpty>
+    <mat-card class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'
+      style='margin-bottom: 4em;'>
+      <span>No results found{{query ? " for "+ query : "" }}. :(</span>
+      <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>
+    </mat-card>
+  </ng-template>
 </div>

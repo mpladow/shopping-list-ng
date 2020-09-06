@@ -29,13 +29,14 @@ import { AdminCategoryListComponent } from './main-components/recipe-list/admin-
 import { AdminCategoryEditComponent } from './main-components/recipe-list/admin-category/admin-category-edit/admin-category-edit.component';
 import { SkeletonLoaderModule } from './shared/skeleton-loader/skeleton-loader.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { MainComponent } from './main-components/main/main.component';
+import { MainComponent } from './main-components/recipe-list/main/main.component';
 import { SearchResultsComponent } from './main-components/search-results/search-results.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { CategoriesComponent } from './main-components/recipe-list/categories/categories.component';
 import { LoginComponent } from './login-components/login/login.component';
 import { AllRecipesComponent } from './main-components/recipe-list/all-recipes/all-recipes.component';
 import { MainJumbotronComponent } from './main-components/recipe-list/main-jumbotron/main-jumbotron.component';
+import { SearchComponent } from './shared/search/search.component';
 
 
 
@@ -58,7 +59,8 @@ import { MainJumbotronComponent } from './main-components/recipe-list/main-jumbo
         SearchResultsComponent,
         LoadingComponent,
         AllRecipesComponent,
-        MainJumbotronComponent
+        MainJumbotronComponent,
+        SearchComponent
           ],
     imports: [
         BrowserModule,

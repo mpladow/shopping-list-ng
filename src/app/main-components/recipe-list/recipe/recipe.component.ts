@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RecipeComponent implements OnInit {
     recipe: Recipe;
     selectedIngredients: Array<string> = [];
+    loading: boolean = true;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class RecipeComponent implements OnInit {
     ngOnInit() {
         const recipeId = this.route.snapshot.params['id'];
         this.recipeService.getRecipeById(recipeId).subscribe((result) => {
-            console.log(result);
+            this.loading = false;
             this.recipe = result;
             console.log(result);
             if (this.recipe.imageFile != null) {
