@@ -11,7 +11,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.component';
 import { AdminCategoryListComponent } from './main-components/recipe-list/admin-category/admin-category-list/admin-category-list.component';
 import { AdminCategoryEditComponent } from './main-components/recipe-list/admin-category/admin-category-edit/admin-category-edit.component';
-import { MainComponent } from './main-components/main/main.component';
+import { MainComponent } from './main-components/recipe-list/main/main.component';
 
 const routes: Routes = [
     { path: '', component: ShoppingListComponent, canActivate: [AuthGuard] },

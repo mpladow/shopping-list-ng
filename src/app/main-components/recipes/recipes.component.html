@@ -1,30 +1,35 @@
-<mat-card class='mat-elevation-z0' style='margin-top: 40px;'>
-  <form class="recipe-search" fxShow>
-    <mat-form-field class="width-100">
-      <input matInput placeholder="Search {{categoryName}}">
-    </mat-form-field>
-  </form>
-</mat-card>
-<mat-card class='mat-elevation-z0'>
-  <h4>{{categoryName}}</h4>
-</mat-card>
+<div fxFlex fxLayout='column'>
+  <mat-card class='mat-elevation-z0' style='margin-top: 40px;'>
+    <form class="recipe-search" fxShow>
+      <mat-form-field class="width-100">
+        <input matInput placeholder="Search {{categoryName}}">
+      </mat-form-field>
+    </form>
+  </mat-card>
+  <mat-card class='mat-elevation-z0'>
+    <h1>{{categoryName}}</h1>
+  </mat-card>
 
-<div *ngIf="recipes.length > 0; else templateEmpty;" class='allrecipes' fxLayoutAlign='space-between center' fxFill>
-  <mat-card #cardRecipe *ngFor='let recipe of recipes' class='mat-elevation-z1'
-    (click)='onRecipeClick(recipe.recipeId)'>
-    <div mat-card-image class='card-img-container'>
-      <img src={{recipe.imageSrc}}>
+  <div *ngIf="recipes.length > 0; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign=''>
+    <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutAlign='center start' style='padding: 3px'>
+      <mat-card #cardRecipe class='mat-elevation-z1 recipe-card' (click)='onRecipeClick(recipe.recipeId)'>
+        <img src={{recipe.imageSrc}}>
+        <mat-card-content>
+          <div class='text-container'>
+            <span>{{recipe.name}}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
     </div>
-    <mat-card-content>
-      <p>{{recipe.name}}</p>
-    </mat-card-content>
-    <mat-card-footer>
-    </mat-card-footer>
-  </mat-card>
-</div>
+  </div>
 
-<ng-template #templateEmpty>
-  <mat-card class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center' style='margin-bottom: 4em;'>This category is empty. Yeeeet!
-    <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>
-  </mat-card>
-</ng-template>
+  <ng-template #templateEmpty>
+    <mat-card class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'
+      style='margin-bottom: 4em;'>
+      This category is empty. Yeeeet!
+      <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>
+    </mat-card>
+  </ng-template>
+</div>

@@ -1,6 +1,13 @@
-<mat-card class='recipe-image-container mat-elevation-z0'>
-  <img src='{{recipe.imageSrc}}'>
-</mat-card>
+<ng-container *ngIf='!loading; else loadingTemplate'>
+  <mat-card class='recipe-image-container mat-elevation-z0'>
+    <img src='{{recipe.imageSrc}}'>
+  </mat-card>
+</ng-container>
+<ng-template #loadingTemplate>
+  <mat-card class='recipe-image-container mat-elevation-z0'>
+    <img>
+  </mat-card>
+</ng-template>
 <!-- <mat-card class='container-frosted'>
   <mat-card-title>{{recipe.name}}</mat-card-title>
   <mat-card-subtitle>{{recipe.descriptionPrimary}}</mat-card-subtitle>
@@ -23,12 +30,13 @@
     </div>
   </section>
 </mat-card>
-<mat-card class='mat-elevation-z0'>
+<mat-card class='mat-elevation-z0' style='margin-bottom: 4em'>
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Ingredients">
       <ng-container *ngFor="let ingredient of recipe.ingredients">
         <mat-selection-list>
-          <mat-list-option checkboxPosition="before" *ngIf="!ingredient.seperator; else seperatorIngredient" value='ingredient.name'>
+          <mat-list-option checkboxPosition="before" *ngIf="!ingredient.seperator; else seperatorIngredient"
+            value='ingredient.name'>
             <div fxFlex='80'>{{ingredient.name}}</div>
             <div fxFlex='20' style='text-align: right;'>{{ingredient.quantity}} {{ingredient.measure}}</div>
           </mat-list-option>
