@@ -1,7 +1,8 @@
 @import '../../../shared/scss/mixins';
 @import '../../../shared/scss/shared';
 
-
+:host {
+}
 // favourite recipes
 .mat-card-image {
     margin-bottom: 0;
@@ -21,15 +22,22 @@
         width: 100px;
         padding: 0;
         margin: 1em;
-        .mat-card-footer{
+        .mat-card-footer {
             text-align: center;
         }
     }
 }
 .category-image-container {
-    border-radius: 10px;;
-    img{
+    border-radius: 10px;
+    img {
         width: 100%;
         border-radius: 15px;
     }
+}
+.divFixed {
+    position: fixed;
+    top: 40;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
 }

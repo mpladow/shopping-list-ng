@@ -14,8 +14,8 @@
   <mat-card-subtitle>{{recipe.category.name}}</mat-card-subtitle>
 </mat-card> -->
 <mat-card class='container-recipe-title'>
-  <h1>{{recipe.name}}</h1>
-  <p>{{recipe.descriptionPrimary}}</p>
+  <h1>{{recipe?.name}}</h1>
+  <p>{{recipe?.descriptionPrimary}}</p>
   <section>
     <div class="button-row">
       <button mat-icon-button color="primary" (click)="onEditClick($event)">
@@ -33,23 +33,24 @@
 <mat-card class='mat-elevation-z0' style='margin-bottom: 4em'>
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Ingredients">
-      <ng-container *ngFor="let ingredient of recipe.ingredients">
-        <mat-selection-list>
-          <mat-list-option checkboxPosition="before" *ngIf="!ingredient.seperator; else seperatorIngredient"
-            value='ingredient.name'>
-            <div fxFlex='80'>{{ingredient.name}}</div>
-            <div fxFlex='20' style='text-align: right;'>{{ingredient.quantity}} {{ingredient.measure}}</div>
+      <mat-selection-list fxFlex fxLayout='column'>
+        <ng-container *ngFor="let ingredient of recipe?.ingredients">
+          <mat-list-option checkboxPosition="before" value='ingredient.name'>
+            <div fxFlex='100' fxLayout='row'>
+              <div fxFlex='80'>{{ingredient.name}}</div>
+              <div fxFlex='20' style='text-align: right;'>{{ingredient.quantity}} {{ingredient.measure}}</div>
+            </div>
           </mat-list-option>
-        </mat-selection-list>
-        <ng-template #seperatorIngredient>
+        </ng-container>
+      </mat-selection-list>
+      <!-- <ng-template #seperatorIngredient>
           <div class='recipe-seperator'>
             <div fxFlex='100'>{{ingredient.name}}</div>
           </div>
-        </ng-template>
-      </ng-container>
+        </ng-template> -->
     </mat-tab>
     <mat-tab label="Method">
-      <ng-container *ngFor="let methodItem of recipe.methodItems">
+      <ng-container *ngFor="let methodItem of recipe?.methodItems">
         <div *ngIf="!methodItem.seperator; else seperatorMethodItem" class='recipe-item'>
           <div fxFlex='10'>{{methodItem.stepNo}}.</div>
           <div fxFlex='90'>{{methodItem.text}}</div>

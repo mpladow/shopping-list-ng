@@ -34,10 +34,9 @@ export class AdminCategoryListComponent implements OnInit {
             categories.forEach(c => {
                 this.addCategoryToForm();
                 if (c.imageBase64 != null) {
-                    let src = 'data:image/jpeg;base64,';
-                    src += c.imageBase64;
-                    c.imageSrc = src;
+                    c.imageSrc = c.imageBase64;
                 }
+
             });
             this.categoryForm.get('categories').patchValue(categories);
         });

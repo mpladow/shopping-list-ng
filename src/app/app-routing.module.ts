@@ -12,6 +12,7 @@ import { RecipeComponent } from './main-components/recipe-list/recipe/recipe.com
 import { AdminCategoryListComponent } from './main-components/recipe-list/admin-category/admin-category-list/admin-category-list.component';
 import { AdminCategoryEditComponent } from './main-components/recipe-list/admin-category/admin-category-edit/admin-category-edit.component';
 import { MainComponent } from './main-components/recipe-list/main/main.component';
+import { OptionsComponent } from './main-components/options/options.component';
 
 const routes: Routes = [
     { path: '', component: ShoppingListComponent, canActivate: [AuthGuard] },
@@ -46,6 +47,7 @@ const routes: Routes = [
     { path: 'recipes/:id:category', component: RecipesComponent },
     { path: 'admin-recipe-edit/:id', component: AdminRecipeEditComponent },
     { path: 'admin-recipe-edit', component: AdminRecipeEditComponent },
+    { path: 'options', component: OptionsComponent},
 
     { path: 'admin-category-list', component: AdminCategoryListComponent },
     { path: 'admin-category-edit', component: AdminCategoryEditComponent },
