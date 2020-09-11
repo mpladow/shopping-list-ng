@@ -1,4 +1,4 @@
-<div fxFlexOrder=1 fxFlex="1 1 100%" fxHide fxShow.xs>
+<!-- <div fxFlexOrder=1 fxFlex="1 1 100%" fxHide fxShow.xs>
   <mat-card class='mat-elevation-z0'>
     <div class=header-image-container>
       <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'>
@@ -7,4 +7,12 @@
       </div>
     </div>
   </mat-card>
-</div>
+</div> -->
+<ng-template>
+  <div class="carousel-slide" [style.background-image]="image">
+    <div class="carousel-slide-content">
+      <ng-content></ng-content>
+    </div>
+    <div *ngIf="!hideOverlay" class="carousel-slide-overlay" [style.background-color]="overlayColor"></div>
+  </div>
+</ng-template>

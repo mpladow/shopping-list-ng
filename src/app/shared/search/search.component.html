@@ -1,7 +1,7 @@
 <mat-card class='mat-elevation-z0'>
   <form class="recipe-search" fxHide fxShow.xs>
     <mat-form-field class="width-100">
-      <input (input)='onChange($event)' [(ngModel)]='data' name='data' matInput placeholder="Search all recipes">
+      <input (input)='onChange()' [(ngModel)]='data' name='data' matInput placeholder="Search all recipes">
       <button mat-button *ngIf="data" matSuffix mat-icon-button aria-label="Clear" (click)='onClear()'>
         <mat-icon>close</mat-icon>
       </button>

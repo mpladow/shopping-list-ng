@@ -11,7 +11,7 @@
   </mat-card>
 
   <div *ngIf="recipes.length > 0; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign=''>
-    <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutAlign='center start' style='padding: 3px'>
+    <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutGap='2' fxLayoutAlign='center start'>
       <mat-card #cardRecipe class='mat-elevation-z1 recipe-card' (click)='onRecipeClick(recipe.recipeId)'>
         <img src={{recipe.imageSrc}}>
         <mat-card-content>
