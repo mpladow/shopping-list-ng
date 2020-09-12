@@ -1,8 +1,8 @@
 <app-search (dataUpdated)='onDataUpdated($event)'></app-search>
 <div fxLayout='column' fxLayoutGap=0px style='margin-top: 40px;'>  
   <app-categories></app-categories>
-  <ng-container *ngIf= '!data'>
+  <!-- <ng-container *ngIf= '!data'>
   <app-main-jumbotron ></app-main-jumbotron>
-  </ng-container>
+  </ng-container> -->
   <app-all-recipes [query]='data'></app-all-recipes>
 </div>

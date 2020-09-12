@@ -1,0 +1,18 @@
+<mat-card class='mat-elevation-z0' style='margin-top: 40px'>
+  <h1>Settings</h1>
+  <h5>{{"General" | uppercase}}</h5>
+  <mat-action-list>
+    <mat-list-item> Dark Mode </mat-list-item>
+    <mat-list-item> Add Sharing Account </mat-list-item>
+  </mat-action-list>
+    <h5>{{"Admin" | uppercase}}</h5>
+    <mat-action-list>
+      <mat-list-item (click)=onNewRecipeClick()> New Recipe </mat-list-item>
+      <mat-list-item (click)=onAdminCategoryListClick()> Edit Categories </mat-list-item>
+      <mat-list-item> Edit Collections </mat-list-item>
+    </mat-action-list>
+      <h5>{{"Account" | uppercase}}</h5>
+      <mat-action-list>
+        <mat-list-item (click)=onSignOutClick()> Sign Out </mat-list-item>
+      </mat-action-list>
+</mat-card>

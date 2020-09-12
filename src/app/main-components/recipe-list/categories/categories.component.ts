@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { RecipeVM } from 'src/app/models/recipe';
 import { CategoryVM } from 'src/app/models/category';
 import { RecipesService } from 'src/app/services/recipes.service';
@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
     recipes: RecipeVM[] = [];
     categories: CategoryVM[] = [];
     loaded = false;
+    isFixed = false;
 
     constructor(
         private recipeService: RecipesService,
@@ -46,4 +47,13 @@ export class CategoriesComponent implements OnInit {
             { id: categoryId, category: category },
         ]);
     }
+    // @HostListener('window:scroll')
+    // onWindowScroll() {
+    //     const scrollOffset = 70;
+    //     this.isFixed =
+    //         (window.pageYOffset ||
+    //             document.documentElement.scrollTop ||
+    //             document.body.scrollTop ||
+    //             0) > scrollOffset;
+    // }
 }

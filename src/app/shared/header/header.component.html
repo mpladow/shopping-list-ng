@@ -4,11 +4,11 @@
     <div fxFlex>
       <ng-container *ngIf='showBackButton'>
         <button mat-icon-button appBackNavigation>
-          <mat-icon>keyboard_arrow_left</mat-icon>
+          <mat-icon>keyboard_backspace</mat-icon>
         </button>
       </ng-container>
     </div>
-    <div fxFlex fxLayoutAlign="end start">
+    <!-- <div fxFlex fxLayoutAlign="end start">
       <button mat-icon-button [matMenuTriggerFor]="afterMenu">
         <span class="material-icons">
           settings
@@ -18,14 +18,11 @@
         <button mat-menu-item (click)=onNewRecipeClick()>
           New Recipe
         </button>
-        <button mat-menu-item (click)=logout()>
-          Log Out
-        </button>
       </mat-menu>
-    </div>
+    </div> -->
   </ng-container>
   <!-- <ng-template #searchBar>
-      <mat-card class='mat-elevation-z0 width-100'>
+      <mat-card class='mat-elevation-z0 width-100'>\
         <form class="recipe-search" fxHide fxShow.xs>
           <mat-form-field class="width-100">
             <input matInput placeholder="Search all recipes">

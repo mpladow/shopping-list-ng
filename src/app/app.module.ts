@@ -37,8 +37,14 @@ import { LoginComponent } from './login-components/login/login.component';
 import { AllRecipesComponent } from './main-components/recipe-list/all-recipes/all-recipes.component';
 import { MainJumbotronComponent } from './main-components/recipe-list/main-jumbotron/main-jumbotron.component';
 import { SearchComponent } from './shared/search/search.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { OptionsComponent } from './main-components/options/options.component';
 
 
+export function tokenGetter() {
+    return localStorage.getItem('token');
+
+}
 
 @NgModule({
     declarations: [
@@ -60,8 +66,9 @@ import { SearchComponent } from './shared/search/search.component';
         LoadingComponent,
         AllRecipesComponent,
         MainJumbotronComponent,
-        SearchComponent
-          ],
+        SearchComponent,
+        OptionsComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -72,16 +79,20 @@ import { SearchComponent } from './shared/search/search.component';
         HttpClientModule,
         FlexLayoutModule,
         ImageCropperModule,
-        SkeletonLoaderModule,
+        SkeletonLoaderModule
     ],
     providers: [
         AuthService,
         RecipesService,
         StoragecacheService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        // RequestCacheService, 
+        // RequestCacheService,
         // { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: LoadingScreenInterceptor, multi: true}
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoadingScreenInterceptor,
+            multi: true,
+        },
     ],
     bootstrap: [AppComponent],
 })
