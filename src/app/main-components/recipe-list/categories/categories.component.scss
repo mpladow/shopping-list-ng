@@ -28,10 +28,12 @@
     }
 }
 .category-image-container {
-    border-radius: 10px;
+    border-radius: 25px;
+    width: 5.5em;
+    height: 5.5em;
+    overflow: hidden;
     img {
-        width: 100%;
-        border-radius: 15px;
+        width: 7.5em;
     }
 }
 .divFixed {
