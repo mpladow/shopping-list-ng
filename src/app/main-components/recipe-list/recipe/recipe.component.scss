@@ -3,7 +3,8 @@
 //     margin-right: -10px;
 // }
 .button-row {
-    text-align: right;
+    text-align: center;
+    border-radius: 25px;
     button {
         margin: 1em 1em;
     }
@@ -12,12 +13,75 @@
     border-bottom: 0.5px solid #eaeaea;
     padding: 0.5em;
 }
+.mat-mini-fab {
+    &.mat-warn {
+        background-color: #fff;
+        color: #ba5250;
+    }
+}
+.mat-mini-fab {
+    &.mat-primary {
+        background-color: #fff;
+        color: #1b3f48;
+    }
+}
+.card-container{
+overflow: hidden;
+}
 .recipe-image-container {
     padding: 0;
     // margin-top: -40px;
-    z-index: -999;
+    z-index: 999;
+    border-bottom-left-radius: 47%;
+    overflow: hidden;
+    border-bottom-right-radius: 47%;
+    height: 45vh;
+    position: relative;
+    width: 140vw;
+    margin-left: -25vw;
+    margin-top: -2em!important;
+
     img {
+        height: 100%;
+        margin-bottom: -10px;
+        margin-left: -2em;
+    }
+    .button-container {
+        z-index: 999;
+        position: absolute;
+        bottom: 48px;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        button {
+            margin: 1em 1em;
+        }
+    }
+}
+.loader-container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #1b3f48; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
 .container-recipe-title {
@@ -27,7 +91,7 @@
     border-radius: 25px;
     z-index: 999;
     margin: 0.5em;
-    margin-top: -4em;
+    margin-top: 1em;
     padding: 1.5em;
     h2 {
     }
@@ -46,5 +110,9 @@
 }
 .recipe-seperator {
     padding: 1em 0.7em;
+    font-weight: bold;
+}
+.h1-bold {
+    font-size: 2em;
     font-weight: bold;
 }

@@ -1,30 +1,30 @@
-<mat-card class='mat-elevation-z0' style='margin-top: 40px; margin-bottom: 4em;'>
+<mat-card class='mat-elevation-z0' style='margin-bottom: 4em;'>
+  <h1 class='h1-bold'>Edit Recipe</h1>
   <form [formGroup]='recipeForm'>
     <mat-card-content>
       <div fxLayout='column'>
         <mat-card-title>
           <input type='hidden' formControlName='recipeId'>
-          <mat-form-field class="example-form-field" style='width: 100%'>
-            <mat-label>Recipe Title</mat-label>
-            <input matInput type="text" formControlName="name">
-            <button mat-button matSuffix mat-icon-button aria-label="Clear">
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="hasError('name', 'required')">You must enter a recipe name</mat-error>
-
-          </mat-form-field>
         </mat-card-title>
-        <mat-card-subtitle>
-          <mat-form-field style='width: 100%'>
-            <mat-label>Category</mat-label>
-            <mat-select formControlName="categoryId">
-              <mat-option *ngFor="let category of drpdownCategories" [value]="category.categoryId">
-                {{category.name}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="hasError('categoryId', 'required')">You must select a category</mat-error>
-          </mat-form-field>
-        </mat-card-subtitle>
+        <mat-form-field class="example-form-field" style='width: 100%'>
+          <mat-label>Recipe Title</mat-label>
+          <input matInput type="text" formControlName="name">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="hasError('name', 'required')">You must enter a recipe name</mat-error>
+
+        </mat-form-field>
+        <mat-form-field style='width: 100%'>
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="categoryId">
+            <mat-option *ngFor="let category of drpdownCategories" [value]="category.categoryId">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('categoryId', 'required')">You must select a category</mat-error>
+        </mat-form-field>
+
         <mat-form-field class="example-form-field" fxFlex='80'>
           <mat-label>Main Description</mat-label>
           <textarea formControlName='descriptionPrimary' matInput matInput type="text"></textarea>
@@ -93,7 +93,8 @@
       </div>
       <div cdkDropList (cdkDropListDropped)="dropIngredient($event)">
 
-        <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index' cdkDrag cdkDragStartDelay='250' cdkDragLockAxis="y">
+        <div *ngFor='let ingredient of getIngredientsForm(recipeForm); let i=index' cdkDrag cdkDragStartDelay='250'
+          cdkDragLockAxis="y">
           <div *ngIf="ingredient.get('seperator').value !== true; else seperatorDiv" [formGroup]='ingredient'
             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap='3px'>
             <div fxFlex='10'>
@@ -225,13 +226,17 @@
       <mat-card class='mat-elevation-z0'>
         <mat-card-content>
           <div fxLayout="row" fxLayoutAlign="space-around center">
-            <button mat-flat-button color="primary" (click)=submit()>Save</button>
-            <button *ngIf="this.recipeForm.get('recipeId').value > 0; else clearButton" mat-flat-button color="warn"
-              (click)=delete()>Delete</button>
-            <ng-template #clearButton>
-              <button mat-stroked-button color="warn" (click)=clear()>Clear</button>
+            <div *ngIf='loading' [class.loader]="loading"></div>
+            <ng-container *ngIf='!loading'>
 
-            </ng-template>
+              <button mat-flat-button color="primary" (click)=submit()>Save</button>
+              <button *ngIf="this.recipeForm.get('recipeId').value > 0; else clearButton" mat-flat-button color="warn"
+                (click)=delete()>Delete</button>
+              <ng-template #clearButton>
+                <button mat-stroked-button color="warn" (click)=clear()>Clear</button>
+
+              </ng-template>
+            </ng-container>
           </div>
         </mat-card-content>
       </mat-card>

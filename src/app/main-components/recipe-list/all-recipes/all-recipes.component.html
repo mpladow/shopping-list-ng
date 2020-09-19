@@ -17,8 +17,8 @@
     </div>
   </div>
 
-  <ng-template #templateEmpty *ngIf='!loading'>
-    <mat-card class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'
+  <ng-template #templateEmpty>
+    <mat-card  *ngIf='!loading' class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'
       style='margin-bottom: 4em;'>
       <span>No results found{{query ? " for "+ query : "" }}. :(</span>
       <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>

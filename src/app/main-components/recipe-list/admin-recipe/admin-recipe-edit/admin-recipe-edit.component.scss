@@ -1,16 +1,37 @@
-:host{
-  margin-top: 70px;
+:host {
+    margin-top: 52px;
 }
-.hide{
-  display: none;
+.hide {
+    display: none;
 }
-.custom-fileupload{
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  img{
-    width: 100%;
-  }
+.custom-fileupload {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+        width: 100%;
+    }
+}
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #1b3f48; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.h1-bold {
+    font-size: 2em;
+    font-weight: bold;
 }

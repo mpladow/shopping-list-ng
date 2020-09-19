@@ -1,3 +1,4 @@
+import { MainJumbotronComponent } from './main-components/recipe-list/main-jumbotron/main-jumbotron.component';
 import { StoragecacheService } from './services/storagecache.service';
 import { LoadingScreenInterceptor } from './interceptors/loading-screen.interceptor';
 import { CachingInterceptor } from './interceptors/caching/caching.interceptor';
@@ -65,6 +66,7 @@ export function tokenGetter() {
         AllRecipesComponent,
         SearchComponent,
         OptionsComponent,
+        MainJumbotronComponent
         
     ],
     imports: [

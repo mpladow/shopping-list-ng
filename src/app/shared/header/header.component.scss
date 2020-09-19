@@ -4,13 +4,13 @@
     top: 0;
     left: 0;
     z-index: 99999;
-    background: rgb(255, 255, 255);
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    // background: rgb(255, 255, 255);
+    // background: rgb(255, 255, 255);
+    // background: linear-gradient(
+    //     180deg,
+    //     rgba(255, 255, 255, 1) 0%,
+    //     rgba(255, 255, 255, 0) 100%
+    // );
     padding: .5em;
 }
 .header {
@@ -26,4 +26,10 @@
     top: 0;
     left: 50%;
     margin-left: -10px;
+}
+.mat-mini-fab {
+    &.mat-primary {
+        background-color: #fff;
+        color: #1b3f48;
+    }
 }
