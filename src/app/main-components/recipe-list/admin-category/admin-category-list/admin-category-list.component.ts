@@ -31,23 +31,29 @@ export class AdminCategoryListComponent implements OnInit {
         console.log('init');
         this.categoryService.getCategories().subscribe((categories) => {
             console.log(categories);
-            categories.forEach(c => {
+            categories.forEach((c) => {
                 this.addCategoryToForm();
                 if (c.imageBase64 != null) {
                     c.imageSrc = c.imageBase64;
                 }
-
             });
             this.categoryForm.get('categories').patchValue(categories);
         });
     }
 
     dropCategory(event: CdkDragDrop<string[]>) {
-        moveItemInArray(
-            this.getCategories(this.categoryForm),
+        const categoryFormArray = this.categoryForm.get('categories') as FormArray;
+        this.moveItemInFormArray(
+            categoryFormArray,
             event.previousIndex,
             event.currentIndex
         );
+        console.log({ 'form': this.categoryForm.value });
+        this.categoryService
+            .reorderCategories(this.categoryForm.value)
+            .subscribe((response) => {
+                console.log(response);
+            });
     }
     addCategoryForm() {
         return this.fb.group({
@@ -64,9 +70,32 @@ export class AdminCategoryListComponent implements OnInit {
     getCategories(form) {
         return form.controls.categories.controls;
     }
-    saveOrder() {}
+    moveItemInFormArray(
+        formArray: FormArray,
+        fromIndex: number,
+        toIndex: number
+    ): void {
+        const dir = toIndex > fromIndex ? 1 : -1;
+
+        const from = fromIndex;
+        const to = toIndex;
+
+        let newIndex: number = from + dir;
+        if (newIndex === -1) {
+            newIndex = formArray.length - 1;
+        } else if (newIndex === formArray.length) {
+            newIndex = 0;
+        }
+
+        const currentGroup = formArray.at(from);
+        formArray.removeAt(from);
+        formArray.insert(to, currentGroup);
+    }
     onEditClick(e) {
-      console.log(e);
-        this.router.navigate(['/admin-category-edit', {id: e}]);
+        console.log(e);
+        this.router.navigate(['/admin-category-edit', { id: e }]);
+    }
+    onNewItem() {
+        this.router.navigate(['/admin-category-edit', { id: 0 }]);
     }
 }
