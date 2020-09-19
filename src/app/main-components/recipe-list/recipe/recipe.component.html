@@ -14,8 +14,8 @@
   <mat-card-subtitle>{{recipe.category.name}}</mat-card-subtitle>
 </mat-card> -->
 <mat-card class='container-recipe-title'>
-  <h1>{{recipe?.name}}</h1>
-  <p>{{recipe?.descriptionPrimary}}</p>
+  <h1>{{recipe.name}}</h1>
+  <p>{{recipe.descriptionPrimary}}</p>
   <section>
     <div class="button-row">
       <button mat-icon-button color="primary" (click)="onEditClick($event)">
@@ -34,7 +34,7 @@
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Ingredients">
       <mat-selection-list fxFlex fxLayout='column'>
-        <ng-container *ngFor="let ingredient of recipe?.ingredients">
+        <ng-container *ngFor="let ingredient of recipe.ingredients">
           <mat-list-option checkboxPosition="before" value='ingredient.name'>
             <div fxFlex='100' fxLayout='row'>
               <div fxFlex='80'>{{ingredient.name}}</div>

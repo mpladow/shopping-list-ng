@@ -29,12 +29,11 @@
 }
 .category-image-container {
     border-radius: 25px;
-    width: 5.5em;
-    height: 5.5em;
+    width: 100%;
     overflow: hidden;
+    height: 5em;
     img {
-        width: 7.5em;
-    }
+        width: calc(100% + 2em);    }
 }
 .divFixed {
     position: fixed;

@@ -3,7 +3,7 @@
   <div fxLayout='column'>
     <form [formGroup]='categoryForm' fxFlex=100 fxLayoutGap="20px">
       <div cdkDropList (cdkDropListDropped)="dropCategory($event)">
-        <ng-container *ngFor='let category of getCategories(categoryForm)'>
+        <ng-container *ngFor='let category of getCategories(categoryForm); let i=index'>
           <mat-card cdkDrag cdkDragLockAxis="y">
             <mat-card-content>
 
@@ -35,3 +35,8 @@
     </form>
   </div>
 </mat-card>
+  <div class='addButtonContainer'>
+    <button mat-fab color="primary" (click)="onNewItem()">
+      <span class='material-icons'>add</span>
+    </button>
+  </div>

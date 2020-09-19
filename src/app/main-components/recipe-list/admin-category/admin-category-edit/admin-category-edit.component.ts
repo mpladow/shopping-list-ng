@@ -48,7 +48,7 @@ export class AdminCategoryEditComponent implements OnInit {
 
     createCategoryForm() {
         this.categoryForm = this.fb.group({
-            categoryId: '',
+            categoryId: 0,
             name: ['', Validators.required],
             imageBase64: '',
             order: 0,

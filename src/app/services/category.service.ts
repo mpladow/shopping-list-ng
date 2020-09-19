@@ -61,4 +61,12 @@ export class CategoryService {
     deleteCategoryById(id: number) {
         return this.http.delete(this.url + id);
     }
+    reorderCategories(model: Array<Category>) {
+        console.log({'model': model});
+        return this.http.post(this.url + 'reordercategories', model).pipe(
+            map((response:any) =>  {
+                return response;
+            })
+        )
+    }
 }
