@@ -20,7 +20,7 @@ export class AllRecipesComponent implements OnInit, OnChanges {
     recipes: Recipe[] = [];
     @Input() query: string = '';
     @Input() event: Event;
-
+loading: boolean = true;
     // @Output()
     // public onData: EventEmitter<any> = new EventEmitter<any>();
 
@@ -52,6 +52,7 @@ export class AllRecipesComponent implements OnInit, OnChanges {
                     r.imageSrc = r.imageFile;
                 }
             });
+            this.loading = false;
         });
     }
 }

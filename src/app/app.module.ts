@@ -65,6 +65,7 @@ export function tokenGetter() {
         AllRecipesComponent,
         SearchComponent,
         OptionsComponent,
+        
     ],
     imports: [
         BrowserModule,
@@ -77,17 +78,18 @@ export function tokenGetter() {
         FlexLayoutModule,
         ImageCropperModule,
         // SkeletonLoaderModule
+        BrowserAnimationsModule,
     ],
     providers: [
         AuthService,
         RecipesService,
         StoragecacheService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: LoadingScreenInterceptor,
-            multi: true,
-        },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: LoadingScreenInterceptor,
+        //     multi: true,
+        // },
     ],
     bootstrap: [AppComponent],
 })
