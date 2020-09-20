@@ -178,6 +178,8 @@ export class AdminRecipeEditComponent implements OnInit {
                 'Save this recipe',
                 'Do you want to save this recipe?',
                 () => {
+                            this.loading = true;
+
                     this.adminrecipesService
                         .createNewRecipe(recipe)
                         .subscribe((newRecipeId: number) => {
@@ -200,6 +202,7 @@ export class AdminRecipeEditComponent implements OnInit {
                                     'Your recipe could not be saved at the current moment. Please try again'
                                 );
                             }
+                            this.loading = false;
                             console.log(newRecipeId);
                         });
                 }

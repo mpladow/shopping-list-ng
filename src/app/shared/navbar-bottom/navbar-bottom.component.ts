@@ -19,7 +19,7 @@ export class NavbarBottomComponent implements OnInit {
       if (index === 0) {
         element.label = "Shopping List";
         element.icon = "shopping_cart";
-        element.path = "/"
+        element.path = "/shopping-list"
       } else if (index === 1) {
         element.label = "Recipes";
         element.icon = "menu_book";

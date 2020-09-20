@@ -1,4 +1,3 @@
-
 import { RecipesComponent } from './main-components/recipes/recipes.component';
 import { AdminRecipeEditComponent } from './main-components/recipe-list/admin-recipe/admin-recipe-edit/admin-recipe-edit.component';
 import { RegisterComponent } from './login-components/register/register.component';
@@ -20,6 +19,7 @@ const routes: Routes = [
         path: 'shopping-list',
         component: ShoppingListComponent,
         canActivate: [AuthGuard],
+        data: { animation: 'shopping-list' },
     },
     // {
     //     // this is a dummy route used to protect multiple routes
@@ -37,6 +37,7 @@ const routes: Routes = [
         path: 'main',
         component: MainComponent,
         canActivate: [AuthGuard],
+        data: { animation: 'main' },
     },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
@@ -47,7 +48,16 @@ const routes: Routes = [
     { path: 'recipes/:id:category', component: RecipesComponent },
     { path: 'admin-recipe-edit/:id', component: AdminRecipeEditComponent },
     { path: 'admin-recipe-edit', component: AdminRecipeEditComponent },
-    { path: 'options', component: OptionsComponent},
+
+    {
+        path: 'shopping-list',
+        component: ShoppingListComponent,
+        data: { animation: 'options' },
+    },
+    {
+        path: 'options',
+        component: OptionsComponent,
+    },
 
     { path: 'admin-category-list', component: AdminCategoryListComponent },
     { path: 'admin-category-edit', component: AdminCategoryEditComponent },

@@ -1,7 +1,7 @@
 <div class='container'>
   <app-header></app-header>
-  <div>
-    <router-outlet ></router-outlet>
+  <div [@simpleFadeAnimation]="getRouterOutletState(o)">
+    <router-outlet  #o="outlet"></router-outlet>
   </div>
   <app-navbar-bottom></app-navbar-bottom>
 </div>

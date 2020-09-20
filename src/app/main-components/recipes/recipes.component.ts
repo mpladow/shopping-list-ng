@@ -13,6 +13,7 @@ export class RecipesComponent implements OnInit {
     category: CategoryVM;
     recipes: Recipe[] = [];
     categoryName: string;
+    loading: boolean = true;
 
     constructor(
         private recipeService: RecipesService,
@@ -28,11 +29,12 @@ export class RecipesComponent implements OnInit {
             .GetRecipesByCategory(categoryId)
             .subscribe((result) => {
                 this.recipes = result;
-                this.recipes.forEach(r => {
-                   if(r.imageFile != null){
+                this.recipes.forEach((r) => {
+                    if (r.imageFile != null) {
                         r.imageSrc = r.imageFile;
-                   }
-                })
+                    }
+                });
+                this.loading = false;
             });
     }
     onRecipeClick(recipeId) {

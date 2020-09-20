@@ -2,7 +2,7 @@
   <mat-card class='mat-elevation-z0'>
     <h3 style='letter-spacing: 1px'>Explore</h3>
   </mat-card>
-  <div *ngIf="recipes.length > 0; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign=''>
+  <div *ngIf="recipes.length > 0 && !loading; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign=''>
     <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutAlign='center start' style='padding: 3px'>
       <mat-card #cardRecipe class='mat-elevation-z1 recipe-card' (click)='onRecipeClick(recipe.recipeId)'>
         <img src={{recipe.imageSrc}}>
@@ -18,10 +18,13 @@
   </div>
 
   <ng-template #templateEmpty>
-    <mat-card class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'
+    <mat-card  *ngIf='!loading' class='mat-elevation-z0' fxLayout='column' fxLayoutAlign='space-around center'
       style='margin-bottom: 4em;'>
       <span>No results found{{query ? " for "+ query : "" }}. :(</span>
       <button mat-button [routerLink]="['/admin-recipe-edit']">Add a new recipe</button>
     </mat-card>
   </ng-template>
+</div>
+<div class="allrecipes-loader" *ngIf='loading'>
+<div class='loader'></div>
 </div>
