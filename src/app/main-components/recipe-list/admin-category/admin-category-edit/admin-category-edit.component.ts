@@ -3,7 +3,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from 'src/app/models/category';
+import { Category, CategoryVM } from 'src/app/models/category';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
@@ -74,13 +74,12 @@ export class AdminCategoryEditComponent implements OnInit {
 
     delete() {}
     submit() {
-       const category: Category = this.categoryForm.value;
+       const category: CategoryVM = this.categoryForm.value;
        this.alertify.confirm(
            'Save this recipe',
            'Do you want to save this recipe?',
            () => {
-               this.categoryService
-                   .createNewCategory(category)
+               this.categoryService.createNewCategory(category)
                    .subscribe((categoryId: number) => {
                        if (categoryId > 0) {
                            this.alertify.success(
@@ -94,6 +93,8 @@ export class AdminCategoryEditComponent implements OnInit {
                                'Your category could not be saved at the current moment. Please try again'
                            );
                        }
+                   }, (error) => {
+                       console.log(error);
                    });
            }
        );

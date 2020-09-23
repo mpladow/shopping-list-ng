@@ -26,7 +26,10 @@
 </mat-card> -->
 <mat-card class='container-recipe-title mat-elevation-z0'>
   <h1 class='h1-bold'>{{recipe.name}}</h1>
-  <p>{{recipe.descriptionPrimary}}</p>
+  <mat-chip-list >
+    <mat-chip color="primary" selected >{{recipe.categoryName}}</mat-chip>
+  </mat-chip-list>
+  <p style='margin-top: .7em;'>{{recipe.descriptionPrimary}}</p>
   <section>
     <!-- <div class="button-row mat-elevation-z5">
       <button mat-icon-button color="primary" (click)="onEditClick($event)">
