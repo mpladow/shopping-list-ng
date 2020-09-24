@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -178,7 +178,7 @@ export class AdminRecipeEditComponent implements OnInit {
                 'Save this recipe',
                 'Do you want to save this recipe?',
                 () => {
-                            this.loading = true;
+                    this.loading = true;
 
                     this.adminrecipesService
                         .createNewRecipe(recipe)
@@ -317,8 +317,8 @@ export class AdminRecipeEditComponent implements OnInit {
 
     imageCropped(event: any): void {
         const base64 = event.base64;
-        this.currentImage = base64;
-        this.recipeForm.controls['imageFile'].setValue(base64);
+        // // this.croppedImage = base64;
+         this.recipeForm.controls['imageFile'].setValue(base64);
     }
     moveItemInFormArray(
         formArray: FormArray,
@@ -345,5 +345,11 @@ export class AdminRecipeEditComponent implements OnInit {
     removeImage() {
         this.recipeForm.controls['imageFile'].setValue('');
         this.currentImage = null;
+    }
+    addMethodItemToFormandRefocus() {
+        this.addMethodItemToForm();
+    }
+    addIngredientToFormAndRefocus() {
+        this.addIngredientToForm();
     }
 }

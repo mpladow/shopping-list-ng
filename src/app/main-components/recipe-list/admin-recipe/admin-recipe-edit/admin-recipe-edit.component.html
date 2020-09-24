@@ -45,9 +45,9 @@
       <!-- <img mat-card-image src='https://material.angular.io/assets/img/examples/shiba2.jpg'> -->
       <span #imageName></span>
       <div style='margin-right:.5em'>
-        <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" [maintainAspectRatio]="true"
-          containWithinAspectRatio="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
-          [cropperMinWidth]="150" resizeToWidth='600' alignImage='center'>
+        <image-cropper style='max-height: 600px' [imageChangedEvent]="imageChangedEvent" [imageBase64]="currentImage" 
+          containWithinAspectRatio="false" [aspectRatio]="1 / 1" format="png" (imageCropped)="imageCropped($event)"
+          [cropperMinWidth]="100" alignImage='center'>
 
         </image-cropper>
       </div>
@@ -116,7 +116,7 @@
             </mat-form-field>
             <mat-form-field class="example-form-field" fxFlex='50'>
               <mat-label>Ingredient</mat-label>
-              <input formControlName='name' matInput type="text">
+              <input formControlName='name' matInput type="text" (keyup.enter)="addIngredientToFormAndRefocus()">
             </mat-form-field>
             <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingIngredients'>
               <mat-icon>drag_indicator</mat-icon>
@@ -186,7 +186,7 @@
             </div>
             <mat-form-field class="example-form-field" fxFlex='80'>
               <mat-label>Step Details</mat-label>
-              <textarea formControlName='text' matInput type="text"></textarea>
+              <textarea formControlName='text' matInput type="text" (keyup.enter)="addMethodItemToFormandRefocus()"></textarea>
             </mat-form-field>
             <div fxFlex='10' cdkDragHandle [class.hide]='!reorderingMethodItems'>
               <mat-icon>drag_indicator</mat-icon>

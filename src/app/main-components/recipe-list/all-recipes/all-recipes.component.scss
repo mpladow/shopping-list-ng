@@ -1,16 +1,6 @@
 .width-100 {
     width: 100%;
 }
-.allrecipes {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    // allows the last item in a list to not extend over the remaining space - a nice hack
-    &::after {
-        content: '';
-        flex: 1 2 140px;
-    }
-}
 .recipe-card {
     padding: 0;
     cursor: pointer;

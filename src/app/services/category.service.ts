@@ -44,7 +44,7 @@ export class CategoryService {
             })
         );
     }
-    createNewCategory(model: Category) {
+    createNewCategory(model: CategoryVM) {
         return this.http.post(this.url, model).pipe(
             map((response: any) => {
                 return response;
