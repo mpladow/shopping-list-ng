@@ -10,8 +10,8 @@
     <h1 class='h1-bold'>{{categoryName}}</h1>
   </mat-card>
 
-  <div *ngIf="recipes.length > 0 && !loading ; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign=''>
-    <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutAlign='center start' style='padding: 3px'>
+  <div *ngIf="recipes.length > 0 && !loading ; else templateEmpty;" fxFlex='100' fxLayout='row wrap' fxLayoutAlign='flex-start flex-start'>
+    <div *ngFor='let recipe of recipes' fxFlex='20' fxFlex.xs='50' fxLayoutAlign='center start' style='padding: 3px; align-content: flex-start!important'>
       <mat-card #cardRecipe class='mat-elevation-z1 recipe-card' (click)='onRecipeClick(recipe.recipeId)'>
         <img src={{recipe.imageSrc}}>
         <mat-card-content>
